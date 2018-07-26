@@ -47,6 +47,7 @@ App({
       innerAudioContext: null,
       isDisplay: false
     },
+    processTime: null,
     curriculumList: [
       {
         id: 0,

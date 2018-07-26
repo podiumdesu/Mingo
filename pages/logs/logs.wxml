@@ -22,9 +22,11 @@
       </p>
     </view>
     <view class="clock-switch-ctn">
-      <view wx:if="{{clockSwitch.left}}" bindtap="clockSwitchLeftClick" class="clock-switch" id="clock-switch-left">{{clockSwitch.left}}</view>
-      <view wx:if="{{clockSwitch.right}}" bindtap="clockSwitchRightClick" class="clock-switch" id="clock-switch-right">{{clockSwitch.right}}</view>
-      
+      <view wx:if="{{clockSwitch.start}}" bindtap="clockSwitchStartClick" class="clock-switch clock-switch-left" id="clock-switch-start">开始</view>
+      <view wx:if="{{clockSwitch.stop}}" bindtap="clockSwitchStopClick" class="clock-switch clock-switch-right" id="clock-switch-stop">停止</view>
+      <view wx:if="{{clockSwitch.pause}}" bindtap="clockSwitchPauseClick" class="clock-switch clock-switch-left" id="clock-switch-stop">暂停</view>
+      <view wx:if="{{clockSwitch.continue}}" bindtap="clockSwitchContinueClick" class="clock-switch clock-switch-left" id="clock-switch-stop">继续</view>
+
     </view>
   </view>
 
@@ -32,7 +34,7 @@
 
 
 <template is="curriculum-show" 
-  data="{{...curriculumList[optionID], ...{ id: optionID, progress: curriculumProgress[optionID], day: day[curriculumProgress[optionID]],processTime: processTime, audioInfo: thisCourseAudioInfo, clockSwitch: clockSwitchInfo}, rippleDisplay: rippleDisplay }}"></template>
+  data="{{...curriculumList[optionID], ...{ id: optionID, progress: curriculumProgress[optionID], day: day[curriculumProgress[optionID]],processTime: processTime, audioInfo: thisCourseAudioInfo, clockSwitch: clockSwitchInfo, rippleDisplay: rippleDisplay} }}"></template>
 <!--
 <template is="curriculum-show" data="{{...item}}"></template>
 -->

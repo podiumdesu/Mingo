@@ -50,7 +50,8 @@ Clock.prototype = {
     _begin: function (resolve) { // 用于进行processing时间的维护
         let _this = this
         let time = getTime(_this.processingTime, _this.endTime)
-        _this.displayEle.innerHTML = _this.processingTime // 用于赋值
+        // _this.displayEle.innerHTML = _this.processingTime // 用于赋值
+        console.log(_this.processingTime)
         if (time.startTime - time.endTime > 0) {
             time.startTime -= 1000 // 此时减时间
             _this.processingTime = new Date(time.startTime).toString().substr(16, 8) // 运行了1s， 此时应该更新。
