@@ -1,0 +1,54 @@
+page {
+  background: #fff;
+  padding-bottom: 50rpx;
+}
+
+/*
+.curriculum-ctn {
+  display: flex;
+  justify-content: center;
+  vertical-align: center;
+  flex-wrap: wrap;
+}
+*/
+.curriculum-title {
+  color: #50606c;
+  margin-left: 50rpx;
+  font-size: 55rpx;
+  font-weight: 500;
+}
+.curriculum-nav {
+  margin: 0 50rpx;
+  border-radius: 45rpx;
+}
+.curriculum-name {
+  color: rgba(255,255,255,0.9);
+  font-size: 45rpx;
+  font-weight: 500;
+  margin-top: 80rpx;
+  margin-left: 20rpx;
+}
+.curriculum-list {
+  /* border: 2rpx solid black; */
+  box-shadow: 1px 1px 20px rgba(0,0,0,0.3);
+  height: 320rpx;
+  margin-top: 50rpx;
+  border-radius: 45rpx;
+  padding: 20px 20px 20px 20px;
+  background: blue;
+  color: rgba(255,255,255,0.9);
+  position: relative;
+}
+/* .curriculum-list:nth-last-child(1) {
+  margin-bottom: 300rpx
+} */
+.curriculum-desc {
+  position: absolute;
+  right: 40rpx;
+  bottom: 40rpx;
+}
+.curriculum-start {
+  width: 100px;
+  height: 40px;
+
+}

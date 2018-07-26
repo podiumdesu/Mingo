@@ -1,0 +1,20 @@
+<!-- curriculum.wxml -->
+<import is="curriculumList-show" src="../../templates/curriculumList.wxml" />
+
+<view class="curriculum-ctn">
+  <text class="curriculum-title">热门课程</text>
+  <block wx:for="{{curriculumList}}">
+    <template is="curriculumList-show" data="{{...item}}"></template>
+  </block>
+</view>
+
+
+<!-- 
+<view class="curriculum-ctn">
+  <view wx:for="{{curriculumList}}" bindtap="test" wx:key="{{item.id}}"
+  class="curriculum-list">
+    <text class="curriculum-name">{{item.name}}</text>
+    <view class="curriculum-desc">{{item.description}}</view>
+  </view>
+</view>
+-->

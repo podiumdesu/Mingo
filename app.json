@@ -1,0 +1,42 @@
+{
+  "pages":[
+    "pages/curriculum/curriculum",
+    "pages/tick/tick",
+    "pages/index/index",
+    "pages/info/info",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"white",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Mingo",
+    "navigationBarTextStyle": "black",
+    "onReachBottomDistance": "20px",
+    "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "color": "#9ba4ab",
+    "selectedColor": "#78c3ba",
+    "list": [
+      {
+        "pagePath": "pages/curriculum/curriculum",
+        "text": "课程",
+        "iconPath": "pages/imgs/curriculum1.png",
+        "selectedIconPath": "pages/imgs/curriculum.png"
+      },
+      {
+        "pagePath": "pages/tick/tick",
+        "text": "冥想钟",
+        "iconPath": "pages/imgs/tick1.png",
+        "selectedIconPath": "pages/imgs/tick.png"
+      },
+      {
+        "pagePath": "pages/info/info",
+        "text": "我",
+        "iconPath": "pages/imgs/info1.png",
+        "selectedIconPath": "pages/imgs/info.png"
+      }
+    ]
+  },
+  "debug": true
+}

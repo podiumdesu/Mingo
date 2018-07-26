@@ -1,0 +1,22 @@
+<!-- template for curriculum page show 
+     you need pass in a parameter
+    [
+      {
+        id: xx,
+        name: xx,
+        description: xxx
+      }
+    ]
+-->
+
+
+<template name="curriculumList-show">
+  <navigator url="/pages/logs/logs?id={{id}}" class="curriculum-nav">
+    <view class="curriculum-list" style="background: url({{cardImg}})">
+      <text class="curriculum-name">{{name}}</text>
+      <view class="curriculum-desc">
+        <image class="curriculum-start" src="/static/start_normal.png"/>
+      </view>
+    </view>
+  </navigator>
+</template>

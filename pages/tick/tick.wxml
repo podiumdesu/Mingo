@@ -1,0 +1,6 @@
+
+<input type="text" placeholder="ddfdsfa" auto-focus bindinput="setStartTime"/>
+
+<view>
+  <icon bindtap="clickToStart" type="success" size="80" color="green" />
+</view>
