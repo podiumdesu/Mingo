@@ -11,11 +11,12 @@
 
 
 <template name="curriculumList-show">
-  <navigator url="/pages/logs/logs?id={{id}}" class="curriculum-nav">
+  <!-- 点击跳转至对应的课程信息页面 -->
+  <navigator url="/pages/curriculum/showInfo/showInfo?id={{id}}" class="curriculum-nav">
     <view class="curriculum-list" style="background: url({{cardImg}})">
       <text class="curriculum-name">{{name}}</text>
       <view class="curriculum-desc">
-        <image class="curriculum-start" src="/static/start_normal.png"/>
+        <image class="curriculum-start" src="../../static/start_normal.png"/>
       </view>
     </view>
   </navigator>

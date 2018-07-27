@@ -1,0 +1,10 @@
+<template name="showInfoPage">
+<!-- 点击跳转至音频播放页面 -->
+  <navigator url="/pages/curriculum/showInfo/playAudio/playAudio/?id={{optionID}}">
+    <view class="" style="background: url({{cardImg}})">
+      <text class="">{{optionID}}</text>
+      <view class="">
+      </view>
+    </view>
+  </navigator>
+</template>

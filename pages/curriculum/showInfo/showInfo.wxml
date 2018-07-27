@@ -1,0 +1,3 @@
+<import is="showInfoPage" src="../../../templates/showInfoPage.wxml" />
+
+<template is="showInfoPage" data="{{optionID: optionID, courseList: courseList, des: des, courseProgress: courseProgress, courseLength: courseLength}}"></template>

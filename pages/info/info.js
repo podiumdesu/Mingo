@@ -1,5 +1,12 @@
 const app = getApp()
 
+
+// let _this = this
+// let tempSwitch = (app.globalData.audio.isDisplay && (this.data.clockSwitchInfo.waiting === true)) 
+// tempSwitch && (
+// this.setData({
+//   intervalID: setInterval(this.ddd.bind(this), 1000)
+// }))
 Page({
   data: {
     userInfo: {},

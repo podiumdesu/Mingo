@@ -3,8 +3,9 @@
     "pages/curriculum/curriculum",
     "pages/tick/tick",
     "pages/index/index",
-    "pages/info/info",
-    "pages/logs/logs"
+    "pages/curriculum/showInfo/showInfo",
+    "pages/curriculum/showInfo/playAudio/playAudio",
+    "pages/info/info"
   ],
   "window":{
     "backgroundTextStyle":"white",

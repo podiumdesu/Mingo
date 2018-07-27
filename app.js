@@ -7,7 +7,7 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     if (!wx.getStorageSync('curriculumProgress')) {   // 初始化课程进度
-      wx.setStorageSync('curriculumProgress', [0,0,0,0,0,0,0,0,0,0])
+      wx.setStorageSync('curriculumProgress', [1,0,0,0,0,0,0,0,0,0])
     }
     
     // 播放音频
@@ -85,10 +85,6 @@ App({
             src: "https://od.lk/s/NV8xMjIzNjgyMDBf/1-2.mp3",
             length: "00:10:09"
           },
-          {
-            src: "https://od.lk/s/NV8xMjIzNjgzNDlf/1-3.mp3",
-            length: "00:08:37"
-          }
         ]
       }, 
       {

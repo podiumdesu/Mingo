@@ -41,8 +41,14 @@ page {
   color: white;
   font-weight: 500;
   font-size: 40px;
+  width: 120px;
 }
-
+.audio-waiting {
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+  font-size: 15px;
+}
 .clock-switch-ctn {
   display: flex;
   justify-content: center;
@@ -62,7 +68,11 @@ page {
 }
 
 .clock-ripple {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -138px;
+  margin-left: -108px;
 }
 
 
@@ -82,15 +92,11 @@ page {
 
 .circle, .circle2, .circle3, .circle4{
   position:absolute;
-  top: 50%;
-  left: 50%;
   -webkit-transform: translate(-50%,-50%);
   transform: translate(0,-50%);
   opacity: 0;
   width: 210px;
   height: 210px;
-  margin-top: -105px;
-  margin-left: -54px;
   border-radius: 50%;
   border: 2px solid white;
   -webkit-animation: ripple 4s linear infinite;

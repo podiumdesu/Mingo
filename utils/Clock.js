@@ -1,5 +1,3 @@
-// import Clock from './wxTick'
-// const Clock = require('./wxTick')
 function Clock(init) {
     // 用户设置：
     this.startTime = init.startTime || '00:00:00' // 设置开始时间
@@ -11,6 +9,8 @@ function Clock(init) {
     this.processingTime = this.startTime // 当前运行时间（用于显示以及每次暂停后开始的时间）
     this.intervalID = null // 循环id，创建=>保存=>销毁
 
+    // setInterval(function() {init.temp.temp.processingTime = this.processingTime}, 1000)
+
     // 用于返回：
     this.duration = null // 33333 s        // 从开始到结束/暂停，时钟的运行时长
     this.finishOrNot = false //这个倒计时是否完整完成
@@ -20,16 +20,16 @@ function Clock(init) {
 }
 
 function getTime(startTime, endTime) { // 将"00:00:00" 转换为 Date() 型时间
-    _StartArr = startTime.split(':').reduce((init, i) => {
+    let _StartArr = startTime.split(':').reduce((init, i) => {
         init.push(parseInt(i));
         return init
     }, [])
-    _ResolveStartTime = new Date(1999, 3, 3, _StartArr[0], _StartArr[1], _StartArr[2])
-    _EndArr = endTime.split(':').reduce((init, i) => {
+    let _ResolveStartTime = new Date(1999, 3, 3, _StartArr[0], _StartArr[1], _StartArr[2])
+    let _EndArr = endTime.split(':').reduce((init, i) => {
         init.push(parseInt(i));
         return init
     }, [])
-    _ResolveEndTime = new Date(1999, 3, 3, _EndArr[0], _EndArr[1], _EndArr[2])
+    let _ResolveEndTime = new Date(1999, 3, 3, _EndArr[0], _EndArr[1], _EndArr[2])
     return {
         startTime: _ResolveStartTime,
         endTime: _ResolveEndTime,
@@ -47,6 +47,9 @@ function convertTimeToDate(time) {
 }
 
 Clock.prototype = {
+    temp: function() {
+        return this.processingTime
+    },
     _begin: function (resolve) { // 用于进行processing时间的维护
         let _this = this
         let time = getTime(_this.processingTime, _this.endTime)
@@ -88,7 +91,6 @@ Clock.prototype = {
         })
     },
     stop: function () { // 停止。
-        console.log('I am called')
         let _this = this
         clearInterval(_this.intervalID)
         return new Promise((resolve) => {
@@ -99,9 +101,8 @@ Clock.prototype = {
     pause: function () { // 暂停，是不会操作completeTask的。
         let _this = this
         clearInterval(_this.intervalID)
-        console.log('Now I am paused')
         let a = convertTimeToDate(_this.processingTime) //  因为shutdown了，所以要处理在begin()中多减去的1000ms
-        a.time -= -1000 // why can't plus 1000???????
+        // a.time -= -1000 // why can't plus 1000???????
         _this.processingTime = new Date(a.time).toString().substr(16, 8)
         return new Promise((resolve) => {
             resolve(_this._returnValue())
@@ -113,8 +114,6 @@ Clock.prototype = {
         _this.processingTime = _this.startTime
         _this.finishOrNot = false
         clearInterval(_this.intervalID)
-
-        console.log('now begin from the beginning')
         return new Promise((resolve) => {
             _this._begin(resolve)
             _this.intervalID = setInterval(function () {
@@ -123,5 +122,4 @@ Clock.prototype = {
         })
     }
 }
-
 module.exports = Clock
