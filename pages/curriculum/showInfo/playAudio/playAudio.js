@@ -2,7 +2,7 @@
 const util = require('../../../../utils/util.js')
 const formatTimeToDisplay = require('../../../../utils/formatTimeToDisplay.js')
 const Clock = require('../../../../utils/Clock.js')
-
+const getSeconds = require('../../../../utils/getSeconds.js')
 const app = getApp()
 
 let globalTime = null
@@ -103,6 +103,8 @@ Page({
     app.globalData.audio.innerAudioContext.autoplay = false
     app.globalData.audio.innerAudioContext.src = ''
     app.globalData.audio.innerAudioContext.onEnded(() => {
+      app.globalData.allTickTime += getSeconds(this.data.curriculumList[this.data.optionID].audioList[this.data.classID].length)
+      console.log(app.globalData.allTickTime)
       wx.showModal({
         title: '提示',
         content: '学习完啦',

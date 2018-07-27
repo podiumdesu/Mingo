@@ -41,12 +41,12 @@ App({
   },
   globalData: {
     userInfo: null,
-    tickTime: null,
+    allTickTime: null,
     audio: {
       innerAudioContext: null,
       isDisplay: false
     },
-    processTime: null,
+    processTime: 0,
     curriculumList: [
       {
         id: 0,
