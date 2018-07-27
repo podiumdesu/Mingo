@@ -18,6 +18,7 @@ Page({
     day: ['一', '二', '三', '四', '五', '六', '七'],
     classID: null,     // 设置第几次课程
     thisCourseAudioInfo: null,
+    thisCourseLength: null,
     temp: {
       processTime: null,    // 设置当前运行时间，用于更新
     },
@@ -65,7 +66,10 @@ Page({
     })
     this.setData({
       // 设置当前应该学习的音频内容
-      thisCourseAudioInfo: this.data.curriculumList[this.data.optionID].audioList[this.data.classID],
+      thisCourseAudioInfo: this.data.curriculumList[this.data.optionID].audioList[this.data.classID],      thisCourseLength: this
+    })
+    this.setData({
+      thisCourseLength: this.data.thisCourseAudioInfo.length
     })
     this.setData({
       temp: {processTime: formatTimeToDisplay(this.data.thisCourseAudioInfo.length)}
@@ -80,7 +84,6 @@ Page({
           endTime: '00:00:00',
           completeTask: function () { // 完成后要做的事情
               console.log('this tick is done')
-              alert('dddd')
           },
           temp: {
             temp: this.data.temp.processTime
@@ -99,12 +102,38 @@ Page({
 
     app.globalData.audio.innerAudioContext.autoplay = false
     app.globalData.audio.innerAudioContext.src = ''
+    app.globalData.audio.innerAudioContext.onEnded(() => {
+      wx.showModal({
+        title: '提示',
+        content: '学习完啦',
+        success: function(res) {
+        },
+        showCancel: false,
+      })
+      clearInterval(this.intervalID)
+      console.log('完满结束啦～')
+      let temp = this.data.curriculumProgress
+      if (temp <= this.data.thisCourseLength) temp[this.data.optionID]++
+      wx.setStorageSync('curriculumProgress', temp)
+
+      app.globalData.audio.isDisplay = false
+      this.setData({
+        clockSwitchInfo: {
+          start: true,
+          pause: false,
+          stop: false,
+          continue: false,
+          waiting: null
+        },
+        rippleDisplay: false
+      })
+      app.globalData.audio.innerAudioContext.src = ''
+    })
+
 
     app.globalData.audio.innerAudioContext.onPlay(() => {
       console.log('开始播放')
       console.log(app.globalData.audio.innerAudioContext.duration)
-
-
       app.globalData.audio.isDisplay = true
       this.setData({
         clockSwitchInfo: {

@@ -39,7 +39,8 @@ Page({
     lockedClass: null,
     
     currentClickClassID: null,   // 当前选择的课程
-    changeBtnStyleID: null
+    changeBtnStyleID: null,
+    finish: null,
   },
   // 1 8
   // [0], [2,3,4,5,6,7]
@@ -70,6 +71,41 @@ Page({
   },
 
   // ################################ 加载中 ################################
+  onShow() {
+    this.setData({
+      courseProgress: wx.getStorageSync('curriculumProgress')[this.data.optionID]
+    })
+
+    if (this.data.courseProgress === this.data.courseLength) {   // 已经全部完成了
+      wx.showToast({
+        title: '你已经成功完成所有练习啦',
+        content: '学习完啦',
+        duration: 2000,
+      })
+    } else {
+      this.setData({
+        setClass: true,
+        currentClickClassID: this.data.courseProgress,
+        changeBtnStyleID: this.data.courseProgress
+      })
+  
+      // 设置展示课程信息+时长
+      this.setData({
+        selectClassDisplayInfo: {
+          name: this.returnDay(this.data.courseProgress),
+          length: this.returnCurrentClassTime(this.data.courseProgress)
+        }
+      })
+      // 维护用于button点击的两个数组
+      this.data.setClass && this.setData({
+        unlockedClass: this.setUnlockedClass(this.data.courseProgress),
+        lockedClass: this.setLockedClass(this.data.courseProgress,this.data.courseLength)
+      })
+      this.setData({
+        setClass: false
+      })
+    }
+  },
   onLoad(option) {
     console.log("这是课程详情页面")
     console.log(option.id)
@@ -106,6 +142,9 @@ Page({
     this.data.setClass && this.setData({
       unlockedClass: this.setUnlockedClass(this.data.courseProgress),
       lockedClass: this.setLockedClass(this.data.courseProgress,this.data.courseLength)
+    })
+    this.setData({
+      setClass: false
     })
 
   },

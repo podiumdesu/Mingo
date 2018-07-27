@@ -7,9 +7,8 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     if (!wx.getStorageSync('curriculumProgress')) {   // 初始化课程进度
-      wx.setStorageSync('curriculumProgress', [1,4,0,0,0,0,0,0,0,0])
+      wx.setStorageSync('curriculumProgress', [0,0,0,0,0,0,0,0,0,0])
     }
-    
     // 播放音频
 
 
@@ -78,37 +77,21 @@ App({
         bgImg: "http://pcfgv46cm.bkt.clouddn.com/course2-bg.png",
         audioList: [
           {
-            src: "https://od.lk/s/NV8xMjIyMTUxMzVf/1-1.mp3",
-            length: "00:02:56"
+            src: "https://od.lk/s/NV8xMjI0NTMwODBf/%E4%BA%95%E4%B8%8A%E5%92%8C%E5%BD%A6%20-%20%E3%81%8A%E9%9B%BB%E8%A9%B1.mp3",
+            length: "00:00:08"
           },
           {
-            src: "https://od.lk/s/NV8xMjIzNjgyMDBf/1-2.mp3",
-            length: "00:10:09"
+            src: "https://od.lk/s/NV8xMjI0NTMwODFf/Immediate%20Music%20-%20Orch%20%26%20Choir%20Descent%201.mp3",
+            length: "00:00:19"
           },
-          {
-            src: "https://od.lk/s/NV8xMjIyMTUxMzVf/1-1.mp3",
-            length: "00:02:56"
-          },
-          {
-            src: "https://od.lk/s/NV8xMjIzNjgyMDBf/1-2.mp3",
-            length: "00:10:09"
-          },
-          {
-            src: "https://od.lk/s/NV8xMjIyMTUxMzVf/1-1.mp3",
-            length: "00:02:56"
-          },
-          {
-            src: "https://od.lk/s/NV8xMjIzNjgyMDBf/1-2.mp3",
-            length: "00:10:09"
-          },
-          {
-            src: "https://od.lk/s/NV8xMjIyMTUxMzVf/1-1.mp3",
-            length: "00:02:56"
-          },
-          {
-            src: "https://od.lk/s/NV8xMjIzNjgyMDBf/1-2.mp3",
-            length: "00:10:09"
-          },
+          // {
+          //   src: "https://od.lk/s/NV8xMjI0NTMwNzhf/Immediate%20Music%20-%20Sixty%20Voices%20Rise%203.mp3",
+          //   length: "00:00:21"
+          // },
+          // {
+          //   src: "https://od.lk/s/NV8xMjI0NTMwNzVf/%E6%A8%AA%E5%B1%B1%E5%85%8B%20-%20%E8%A8%80%E3%82%8F%E3%81%AA%E3%81%84%E3%81%A3%E3%81%A6%E8%A8%80%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%AB%E3%83%BB%E3%83%BB%E3%83%BB.mp3",
+          //   length: "00:00:35"
+          // },
         ]
       }, 
       {
