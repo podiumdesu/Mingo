@@ -7,7 +7,7 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     if (!wx.getStorageSync('curriculumProgress')) {   // 初始化课程进度
-      wx.setStorageSync('curriculumProgress', [1,0,0,0,0,0,0,0,0,0])
+      wx.setStorageSync('curriculumProgress', [1,4,0,0,0,0,0,0,0,0])
     }
     
     // 播放音频
@@ -52,7 +52,7 @@ App({
       {
         id: 0,
         name: '七天冥想基础入门A',
-        description: 'this is A',
+        description: '帮助你入门冥想的最佳经典课程，自发行以来，数百万次播放，成为深受欢迎的线上冥想课程',
         cardImg: "http://pcfgv46cm.bkt.clouddn.com/card0.png",
         bgImg: "http://pcfgv46cm.bkt.clouddn.com/course0-bg.png",
         audioList: [
@@ -85,12 +85,36 @@ App({
             src: "https://od.lk/s/NV8xMjIzNjgyMDBf/1-2.mp3",
             length: "00:10:09"
           },
+          {
+            src: "https://od.lk/s/NV8xMjIyMTUxMzVf/1-1.mp3",
+            length: "00:02:56"
+          },
+          {
+            src: "https://od.lk/s/NV8xMjIzNjgyMDBf/1-2.mp3",
+            length: "00:10:09"
+          },
+          {
+            src: "https://od.lk/s/NV8xMjIyMTUxMzVf/1-1.mp3",
+            length: "00:02:56"
+          },
+          {
+            src: "https://od.lk/s/NV8xMjIzNjgyMDBf/1-2.mp3",
+            length: "00:10:09"
+          },
+          {
+            src: "https://od.lk/s/NV8xMjIyMTUxMzVf/1-1.mp3",
+            length: "00:02:56"
+          },
+          {
+            src: "https://od.lk/s/NV8xMjIzNjgyMDBf/1-2.mp3",
+            length: "00:10:09"
+          },
         ]
       }, 
       {
         id: 2,
         name: '七天冥想基本入门C',
-        description: 'this is B',
+        description: 'this is C',
         cardImg: "http://pcfgv46cm.bkt.clouddn.com/card2.png",
         bgImg: "http://pcfgv46cm.bkt.clouddn.com/course1-bg.png",
         audioList: [

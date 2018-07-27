@@ -1,10 +1,44 @@
+<!--
+<import is="chooseClass" src="/pages/templates/chooseClass.wxml" />
+-->
 <template name="showInfoPage">
 <!-- 点击跳转至音频播放页面 -->
-  <navigator url="/pages/curriculum/showInfo/playAudio/playAudio/?id={{optionID}}">
-    <view class="" style="background: url({{cardImg}})">
-      <text class="">{{optionID}}</text>
-      <view class="">
-      </view>
+  <view class="show-banner">
+    <view class="show-img" style="background: url({{courseList.cardImg}})">
+      <p class="course-name">{{courseList.name}}</p>
+      <p class="course-des">{{des}}</p>
     </view>
-  </navigator>
+  </view>
+  <view class="course-title">课程内容</view>
+
+  <!-- button to choose 
+    {{courseProgress}} 当前课程解锁数量 从 0 开始 
+    {{courseLength}} 课程总天数，用于渲染button， 从 1 开始 {{courseLength}}
+
+  <view class="myNew" wx:for="{{list}}">
+    {{item.title}}
+    <view bindtap="readDetail" data-id="{{item.id}}">{{item.content}}</view>
+  </view>
+  -->
+
+
+
+  <view class="class-btn-ctn">
+    <view wx:for="{{unlockedClass}}">
+      <view bindtap="clickToShowInfo" class="class-btn unlock-class-btn {{changeBtnStyleID === item.id ? 'now-class-btn' : ''}}" data-id="{{item.id}}">{{item.id + 1}}</view>
+    </view>
+    <view class="class-btn unlock-class-btn {{changeBtnStyleID === courseProgress ? 'now-class-btn' : ''}} " bindtap="clickToShowInfo" data-id="{{courseProgress}}">{{courseProgress + 1}}</view>
+    <view wx:for="{{lockedClass}}">
+      <view class="class-btn lock-class-btn" bindtap="clickToShowInfo" data-id="{{item.id}}">{{item.id + 1}}</view>
+    </view>
+  </view>
+
+  <view class="info-ctn">
+    <view class="info-show info-day" wx:if="{{selectClassDisplayInfo.name}}">{{selectClassDisplayInfo.name}}</view>
+    <view class="info-show" wx:if="{{selectClassDisplayInfo.length}}">{{selectClassDisplayInfo.length}}</view>
+    <view class="start-btn" bindtap="clickToStartAudio">
+      <image src="../../../static/start-green.png" />
+    </view>
+  </view>
+
 </template>

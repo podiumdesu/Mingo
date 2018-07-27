@@ -8,26 +8,27 @@
 
 <template name="curriculum-show">
   <view class="cur-show-ctn" style="background-image: url({{bgImg}})">
-    <!-- <view bindtap="changeIndexInE" class="show-name">{{name}}</view>  --> 
-    <view class="cur-show-day"><p>第{{day}}课</p></view>
-    <div wx:if="{{rippleDisplay}}" class="clock-ripple" >
-      <div class="circle"></div>
-      <div class="circle2"></div>
-      <div class="circle3"></div>
-      <div class="circle4"></div>
-    </div>
-    <view class="clock-ctn circle-ripple">
-      <p class="clock-time">
-        {{processTime}}
-      </p>
-    </view>
-    <view wx:if="{{clockSwitch.waiting === true}}" class="audio-waiting">正在缓冲</view>
-    <view class="clock-switch-ctn">
-      <view wx:if="{{clockSwitch.start}}" bindtap="clockSwitchStartClick" class="clock-switch clock-switch-left" id="clock-switch-start">开始</view>
-      <view wx:if="{{clockSwitch.stop}}" bindtap="clockSwitchStopClick" class="clock-switch clock-switch-right" id="clock-switch-stop">停止</view>
-      <view wx:if="{{clockSwitch.pause}}" bindtap="clockSwitchPauseClick" class="clock-switch clock-switch-left" id="clock-switch-stop">暂停</view>
-      <view wx:if="{{clockSwitch.continue}}" bindtap="clockSwitchContinueClick" class="clock-switch clock-switch-left" id="clock-switch-stop">继续</view>
-
+    <view class="cur-show-all">
+          <!-- <view bindtap="changeIndexInE" class="show-name">{{name}}</view>  --> 
+      <view class="cur-show-day"><p>第{{day}}课</p></view>
+      <div wx:if="{{rippleDisplay}}" class="clock-ripple" >
+        <div class="circle"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+      <view class="clock-ctn circle-ripple">
+        <p class="clock-time">
+          {{processTime}}
+        </p>
+      </view>
+      <view wx:if="{{clockSwitch.waiting === true}}" class="audio-waiting">正在缓冲</view>
+      <view class="clock-switch-ctn">
+        <view wx:if="{{clockSwitch.start}}" bindtap="clockSwitchStartClick" class="clock-switch clock-switch-left" id="clock-switch-start">开始</view>
+        <view wx:if="{{clockSwitch.stop}}" bindtap="clockSwitchStopClick" class="clock-switch clock-switch-right" id="clock-switch-stop">停止</view>
+        <view wx:if="{{clockSwitch.pause}}" bindtap="clockSwitchPauseClick" class="clock-switch clock-switch-left" id="clock-switch-stop">暂停</view>
+        <view wx:if="{{clockSwitch.continue}}" bindtap="clockSwitchContinueClick" class="clock-switch clock-switch-left" id="clock-switch-stop">继续</view>
+      </view>
     </view>
   </view>
 
@@ -35,7 +36,7 @@
 
 
 <template is="curriculum-show" 
-  data="{{...curriculumList[optionID], ...{ id: optionID, progress: curriculumProgress[optionID], day: day[curriculumProgress[optionID]],processTime: temp.processTime, audioInfo: thisCourseAudioInfo, clockSwitch: clockSwitchInfo, rippleDisplay: rippleDisplay} }}"></template>
+  data="{{...curriculumList[optionID], ...{ id: optionID, classID: classID, progress: curriculumProgress[optionID], day: day[classID],processTime: temp.processTime, audioInfo: thisCourseAudioInfo, clockSwitch: clockSwitchInfo, rippleDisplay: rippleDisplay} }}"></template>
 <!--
 <template is="curriculum-show" data="{{...item}}"></template>
 -->

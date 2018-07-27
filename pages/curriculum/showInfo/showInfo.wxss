@@ -1,0 +1,115 @@
+.show-banner {
+  margin: 20px auto;
+  width: 350px;
+}
+
+.show-img {
+  width: 80%;
+  border-radius: 48rpx;
+  overflow: hidden;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+
+.course-name {
+  display: block;
+  text-align: center;
+  margin-top: 40px;
+  color:white;
+  font-size:25px;
+  font-weight:500;
+  letter-spacing:1px;
+  text-indent:1px;
+}
+
+.course-des {
+  display: block;
+  text-align: left;
+  margin: 15px 0 20px 0;
+  color:white;
+  font-size:18px;
+  font-weight:400;
+}
+
+.course-title {
+  color: #50606c;
+  font-size: 28px;
+  padding-left: 30px;
+  font-weight: 500;
+}
+
+/*
+  点击按钮
+*/
+.class-btn-ctn {
+  padding: 0 23px;
+  display: flex;
+  /* justify-content:; */
+  flex-wrap:wrap;
+  margin-top: 20px;
+}
+
+.class-btn {
+  display: inline-block;
+  width:50px;
+  height: 50px;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 50%;
+  margin: 7px;
+}
+.class-btn > view {
+  line-height: 50px;
+}
+
+.unlock-class-btn {
+  line-height: 50px;
+  border: 3px solid #3FA99d;
+  color: white;
+  background-color: #3FA99d;
+}
+.now-class-btn {
+  line-height: 50px;
+  border: 3px solid #3FA99d;
+  color: #3FA99d;
+  background-color: white;
+}
+.lock-class-btn {
+  line-height: 50px;
+  border: 3px solid  #e2f2f0; 
+  color: #e2f2f0;
+  background-color: white;
+}
+
+
+
+/*
+  显示内容
+*/
+.info-ctn {
+  margin-top: 50px;
+  padding: 0 30px;
+  text-align: center
+}
+
+.start-btn {
+  margin-top: 30px;
+}
+
+.start-btn > image {
+  width: 100px;
+  height: 45px;
+}
+
+.info-show {
+  margin:5px;
+  color:#50606c;
+  font-size:20px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-indent: 1px;
+}
+
+.info-day {
+  font-weight: 500;
+}

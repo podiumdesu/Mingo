@@ -16,7 +16,7 @@ Page({
     optionID: null,
     curriculumProgress: [0,0,0,0,0,0,0,0,0,0],    // 记录学习进度
     day: ['一', '二', '三', '四', '五', '六', '七'],
-    thisCourseStudyDay: null,
+    classID: null,     // 设置第几次课程
     thisCourseAudioInfo: null,
     temp: {
       processTime: null,    // 设置当前运行时间，用于更新
@@ -59,20 +59,18 @@ Page({
         stop: false,     // 停止
         restart: false, // 继续
       },
-      optionID: option.id,
+      optionID: option.id,    // 哪一个课程
+      classID: option.class,    // 第几节课
       curriculumProgress: (wx.getStorageSync('curriculumProgress')),
     })
     this.setData({
-      thisCourseStudyDay: this.data.curriculumProgress[this.data.optionID]
-    })
-    this.setData({
       // 设置当前应该学习的音频内容
-      thisCourseAudioInfo: this.data.curriculumList[this.data.optionID].audioList[this.data.thisCourseStudyDay],
+      thisCourseAudioInfo: this.data.curriculumList[this.data.optionID].audioList[this.data.classID],
     })
     this.setData({
       temp: {processTime: formatTimeToDisplay(this.data.thisCourseAudioInfo.length)}
     })
-    console.log("这个课程已经学习到第"+this.data.thisCourseStudyDay+"天了")
+    console.log("这个课程已经学习到第"+this.data.classID+"天了")
     
     // 设置时钟
     app.globalData.processTime = this.data.thisCourseAudioInfo.length

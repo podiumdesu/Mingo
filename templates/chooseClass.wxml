@@ -1,0 +1,6 @@
+<template name="chooseClass">
+  <navigator url="/pages/curriculum/showInfo/playAudio/playAudio?id={{optionID}}">
+    {{test}}dfadsfdsf
+  </navigator>
+  fadsfasdfadf
+</template>

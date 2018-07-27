@@ -1,4 +1,5 @@
 const app = getApp()
+const formatTimeToDisplay = require('../../../utils/formatTimeToDisplay.js')
 Page({
   data: {
     optionID: null,
@@ -24,11 +25,51 @@ Page({
     //     }
     //   ]
     // },
+
     courseProgress: null,    // 课程进度，数字。 0代表第一天。
     des: null,      // 描述
+    selectClassDisplayInfo: {
+      name: null,
+      length: null,
+    },
     courseLength: null,  // 课程总天数 7代表共有7天
-
+    // 维护2个数组和一个变量
+    setClass: false,
+    unlockedClass: null,
+    lockedClass: null,
+    
+    currentClickClassID: null,   // 当前选择的课程
+    changeBtnStyleID: null
   },
+  // 1 8
+  // [0], [2,3,4,5,6,7]
+  setUnlockedClass: function(courseProgress) {
+    let result = []
+    for (let i = 0; i < courseProgress; i++) {
+      result[i] = {
+        id: i
+      }
+    }
+    return result
+  },
+  setLockedClass: function(courseProgress, courseLength) {
+    let result = []
+    for (let i = courseProgress+1, j = 0; i < courseLength; i++, j++ ) {
+      result[j] = {
+        id: i
+      }
+    }
+    return result
+  },
+  returnDay: function(courseID) {
+    let temp = ['一','二','三','四','五','六','七','八','九','十']
+    return '第'+temp[courseID]+'课'
+  },
+  returnCurrentClassTime: function(courseID) {
+    return formatTimeToDisplay(this.data.courseList.audioList[courseID].length)
+  },
+
+  // ################################ 加载中 ################################
   onLoad(option) {
     console.log("这是课程详情页面")
     console.log(option.id)
@@ -49,8 +90,59 @@ Page({
     this.setData({
       des: this.data.courseList.description,
       courseLength: this.data.courseList.audioList.length,
+      setClass: true,
+      currentClickClassID: this.data.courseProgress,
+      changeBtnStyleID: this.data.courseProgress
     })
 
+    // 设置展示课程信息+时长
+    this.setData({
+      selectClassDisplayInfo: {
+        name: this.returnDay(this.data.courseProgress),
+        length: this.returnCurrentClassTime(this.data.courseProgress)
+      }
+    })
+    // 维护用于button点击的两个数组
+    this.data.setClass && this.setData({
+      unlockedClass: this.setUnlockedClass(this.data.courseProgress),
+      lockedClass: this.setLockedClass(this.data.courseProgress,this.data.courseLength)
+    })
+
+  },
+  // 课程按钮点击
+  clickToShowInfo: function(e) {
+    console.log(e.currentTarget.dataset.id) //打印可以看到，此处已获取到了对应的id)
+    console.log(this.data.courseProgress)
+    
+    this.setData({
+      currentClickClassID: e.currentTarget.dataset.id
+    })
+    if (this.data.currentClickClassID <= this.data.courseProgress) {
+      this.setData({
+        changeBtnStyleID: e.currentTarget.dataset.id
+      })
+    }
+    this.setData({
+      selectClassDisplayInfo: {
+        name: this.returnDay(this.data.currentClickClassID),
+        length: this.returnCurrentClassTime(this.data.currentClickClassID)
+      }
+    })
+  },
+  clickToStartAudio: function() {
+    let targetUrl = `/pages/curriculum/showInfo/playAudio/playAudio?id=${this.data.optionID}&class=${this.data.currentClickClassID}`
+    if (this.data.currentClickClassID <= this.data.courseProgress) {
+      wx.navigateTo({
+        url: targetUrl
+      })
+    } else {
+      wx.showToast({
+        title: '你还没有学习到这里哦～',
+        icon: 'none',
+        duration: 1000,
+        mask:true
+      })
+    }
 
   }
 })
