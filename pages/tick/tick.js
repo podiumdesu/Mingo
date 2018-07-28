@@ -12,6 +12,7 @@ Page({
     duration: null,
     index: null,
     timeChoice: ['1','3','5','10'],
+    timeChoiceShow: ['1 分钟','3 分钟','5 分钟','10 分钟'],
     clockSwitchInfo: {
       start: null,    // 开始
       pause: null,    // 暂停

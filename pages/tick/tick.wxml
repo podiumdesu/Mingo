@@ -16,7 +16,7 @@
 </view>
 
 <view wx:if="{{clockSwitchInfo.start}}"  class="picker-view-ctn">
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{timeChoice}}">
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{timeChoiceShow}}">
     <view class="picker">
       {{pickerTips}}
     </view>

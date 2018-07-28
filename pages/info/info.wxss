@@ -7,12 +7,23 @@ page {
   flex-wrap: wrap;
   height: 100%;
 }
-
+.default-img {
+  width: 50px;
+  height: 50px;
+}
+.btn-click-sign {
+  line-height: 50px;
+  margin-left: 30px;
+  margin:auto;
+  background-color: white;
+  border: 1px solid white;
+}
 .userinfo {
   display: flex;
   height: 15%;
   align-items:center;
   margin: 0 20px;
+  width: 100%;
 }
 
 .userinfo-avatar {
@@ -51,8 +62,9 @@ page {
   height: 77%;
   flex-wrap:wrap;
   display: flex;
-  margin-bottom: 3%
-
+  margin-bottom: 3%;
+  box-shadow:1px 1px 10px rgba(0,0,0,0.3);
+  border-radius:28px;
 }
 .show-tip, .show-info {
   width: 100%;
