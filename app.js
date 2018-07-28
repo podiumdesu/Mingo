@@ -41,7 +41,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    allTickTime: null,
+    allTickTime: 0,
     audio: {
       innerAudioContext: null,
       isDisplay: false

@@ -11,26 +11,43 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
+    firstDay: null,    // 第一次使用
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    innerAudioContext: null
+    howLongDay: null,
+    howLongMin: null,
+    timeTips: null,
+  },
+  onShow: function() {
+    let a = wx.getStorageSync('logs')
+    let firstDay = a[a.length-1] - 1000;
+    let now = a[0]
+    this.setData({
+      howLongDay: Math.ceil((now-firstDay) / 60 / 60 / 24 / 1000),
+    })
+
+
+    let tempHowLongTime =  app.globalData.allTickTime  // 得到的是秒
+    if (tempHowLongTime === 0) {
+      this.setData({
+        timeTips: '您还没有任何冥想体验',
+        howLongMin: 0,
+      })
+    } else if (tempHowLongTime < 60 && tempHowLongTime > 0) {   // 不足一分钟
+      this.setData({
+        timeTips: '您已冥想',
+        howLongMinTip: tempHowLongTime+' Seconds',
+        howLongMin: tempHowLongTime
+      })
+    } else {
+      tempHowLongTime = Math.floor(tempHowLongTime / 60)   // 获取分钟
+      this.setData({
+        timeTips: '您已冥想',
+        howLongMinTip: tempHowLongTime+' Mins',
+        howLongMin: tempHowLongTime
+      })
+    }
   },
   onLoad: function() {
-    app.globalData.audio.innerAudioContext = wx.createInnerAudioContext()
-    this.setData({
-      innerAudioContext: app.globalData.audio.innerAudioContext
-    })
-    app.globalData.audio.innerAudioContext.autoplay = false
-    app.globalData.audio.innerAudioContext.src = 'https://od.lk/s/NV8xMjIyMTUxMzVf/1-1.mp3'
-    app.globalData.audio.innerAudioContext.onPlay(() => {
-        console.log('开始播放')
-    })
-    app.globalData.audio.innerAudioContext.onStop(() => {
-      console.log('停止播放')
-    })
-    app.globalData.audio.innerAudioContext.onError((res) => {
-        console.log(res.errMsg)
-        console.log(res.errCode)
-    })
     if (app.globalData.hasUserInfo) {    // 如果有全局的data
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -55,19 +72,41 @@ Page({
         }
       })
     }
-  },
-  clickToListen: function() {
-    if (app.globalData.audio.isDisplay) {
-      app.globalData.audio.isDisplay = false
-      app.globalData.audio.innerAudioContext.stop()
+    let a = wx.getStorageSync('logs')
+    let firstDay = a[a.length-1] - 1000;
+    let now = a[0]
+    this.setData({
+      howLongDay: Math.ceil((now-firstDay) / 60 / 60 / 24 / 1000),
+    })
+
+    let tempHowLongTime =  app.globalData.allTickTime  // 得到的是秒
+    console.log(tempHowLongTime === 0)
+    if (tempHowLongTime === 0) {
+      this.setData({
+        timeTips: '您还没有任何冥想体验',
+        howLongMin: 0,
+      })
+    } else if (tempHowLongTime < 60 && tempHowLongTime > 0) {   // 不足一分钟
+      this.setData({
+        timeTips: '您已冥想',
+        howLongMinTip: tempHowLongTime+' Seconds',
+        howLongMin: tempHowLongTime
+      })
     } else {
-      app.globalData.audio.isDisplay = true
-      app.globalData.audio.innerAudioContext.play()
-     }
-   },
-  // onHide: function() {
-  //   app.globalData.audio.innerAudioContext.src = null
-  // },
+      tempHowLongTime = Math.floor(tempHowLongTime / 60)   // 获取分钟
+      this.setData({
+        timeTips: '您已冥想',
+        howLongMinTip: tempHowLongTime+' Mins',
+        howLongMin: tempHowLongTime
+      })
+    }
+  },
+  clickToFindClasses: function() {
+    console.log('gg')
+    wx.switchTab({
+      url: '/pages/curriculum/curriculum'
+    })
+  },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
     this.setData({

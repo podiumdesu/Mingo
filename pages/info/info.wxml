@@ -1,11 +1,35 @@
-<view class="userinfo">
-  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-  <block wx:else>
+<view class="page-ctn">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
     <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </block>
+    </block>
+  </view>
+
+  <view class="block-ctn">
+    <view class="show-block">
+      <view class="show-title">冥想年龄</view>
+      <view class="show-bg" style="background: url(http://pcfgv46cm.bkt.clouddn.com/me_card1.png) no-repeat; background-size: 100% 100%;">
+        <view class="show-btn">
+          <view class="show-tip">您已加入Mingo</view>
+          <view class="show-info">{{howLongDay}} Days</view>
+        </view>
+      </view>
+    </view>
+    <view class="show-block">
+      <view class="show-title">冥想时长</view>
+      <view class="show-bg" style="background: url(http://pcfgv46cm.bkt.clouddn.com/me_card2.png) no-repeat; background-size: 100% 100%;">
+        <view class="show-btn">
+          <view class="show-tip">{{timeTips}}</view>
+          <view wx:if="{{howLongMin > 0}}" class="show-info">{{howLongMinTip}}</view>
+          <view wx:if="{{howLongMin <= 0}}" class="find-class" bindtap="clickToFindClasses">
+            <image src="../../static/find-white.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
 </view>
 
-<view>
-  <icon bindtap="clickToListen" type="success" size="80" color="green" />
-</view>

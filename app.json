@@ -1,11 +1,11 @@
 {
   "pages":[
+    "pages/info/info",
     "pages/curriculum/curriculum",
     "pages/tick/tick",
     "pages/index/index",
     "pages/curriculum/showInfo/showInfo",
-    "pages/curriculum/showInfo/playAudio/playAudio",
-    "pages/info/info"
+    "pages/curriculum/showInfo/playAudio/playAudio"
   ],
   "window":{
     "backgroundTextStyle":"white",
