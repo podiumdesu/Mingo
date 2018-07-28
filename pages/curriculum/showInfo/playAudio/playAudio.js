@@ -18,7 +18,7 @@ Page({
     day: ['一', '二', '三', '四', '五', '六', '七'],
     classID: null,     // 设置第几次课程
     thisCourseAudioInfo: null,
-    thisCourseLength: null,
+    thisCourseLength: null,   //课程长度
     temp: {
       processTime: null,    // 设置当前运行时间，用于更新
     },
@@ -31,7 +31,6 @@ Page({
     },
     continue: false,    // 设置是否继续播放音频
     rippleDisplay: false,    // 设置播放时的涟漪 
-    a: null,
     cbSwitch: {
       start: null,    // 开始
       pause: null,    // 暂停
@@ -52,7 +51,7 @@ Page({
         pause: false,    // 暂停
         stop: false,     // 停止
         continue: false, // 继续
-        waiting: null
+        waiting: false
       },
       cbSwitch: {
         start: false,    // 开始
@@ -61,12 +60,12 @@ Page({
         restart: false, // 继续
       },
       optionID: option.id,    // 哪一个课程
-      classID: option.class,    // 第几节课
+      classID: option.class,    // 第几节课  从0开始
       curriculumProgress: (wx.getStorageSync('curriculumProgress')),
     })
     this.setData({
       // 设置当前应该学习的音频内容
-      thisCourseAudioInfo: this.data.curriculumList[this.data.optionID].audioList[this.data.classID],      thisCourseLength: this
+      thisCourseAudioInfo: this.data.curriculumList[this.data.optionID].audioList[this.data.classID],
     })
     this.setData({
       thisCourseLength: this.data.thisCourseAudioInfo.length
@@ -102,12 +101,11 @@ Page({
 
     app.globalData.audio.innerAudioContext.autoplay = false
     app.globalData.audio.innerAudioContext.src = ''
-    app.globalData.audio.innerAudioContext.onEnded(() => {
+    app.globalData.audio.innerAudioContext.onEnded(() => {   // 当音频完整结束的时候
       app.globalData.allTickTime += getSeconds(this.data.curriculumList[this.data.optionID].audioList[this.data.classID].length)
-      console.log(app.globalData.allTickTime)
       wx.showModal({
         title: '提示',
-        content: '学习完啦',
+        content: '这节课学习完了～',
         success: function(res) {
         },
         showCancel: false,
@@ -115,9 +113,21 @@ Page({
       clearInterval(this.intervalID)
       console.log('完满结束啦～')
       let temp = this.data.curriculumProgress
-      if (temp <= this.data.thisCourseLength) temp[this.data.optionID]++
-      wx.setStorageSync('curriculumProgress', temp)
-
+      // 如果听的是同一节课，不应该更新。
+      console.log(this.data.classID)
+      console.log(this.data.classID == temp[this.data.optionID])
+      if (this.data.classID == temp[this.data.optionID]) {
+        temp[this.data.optionID]++   // 比如说从0 -> 1，课程总长度为1
+      }
+      // console.log( temp[this.data.optionID])
+      // console.log(this.data.curriculumList[this.data.optionID].audioList.length)
+      if (temp[this.data.optionID] === this.data.curriculumList[this.data.optionID].audioList.length) {
+        console.log('已经全部学习完了')
+        temp[this.data.optionID]--   // 比如说从0 -> 1，课程总长度为1
+        app.globalData.curriculumList[this.data.optionID].finished = true
+      }
+      wx.setStorageSync('curriculumProgress', temp)   // [1,0,0,0,0]，长度总共就是1
+      console.log(wx.getStorageSync('curriculumProgress'))
       app.globalData.audio.isDisplay = false
       this.setData({
         clockSwitchInfo: {
@@ -276,9 +286,7 @@ Page({
         pause: false
       }
     })
-
-    // this.data.a.pause.call(this.data.a)
-    // 设置数据
+     // 设置数据
     app.globalData.audio.isDisplay = false
     this.setData({
       clockSwitchInfo: {

@@ -70,15 +70,21 @@ page {
 .clock-switch-ctn {
   display: flex;
   justify-content: center;
-  margin-top: 370px;
+  margin-top: 340px;
 }
 .clock-switch {
   display: inline-block;
   border:1px solid white;
-  padding:5px 20px;
+  padding:5px 30px;
   border-radius:20px;
   color:white;
-  margin: 10px;
+  margin: 20px;
+}
+
+.clock-switch-left {
+  border:1px solid white;
+  background-color: white;
+  color: #738da0;
 }
 
 

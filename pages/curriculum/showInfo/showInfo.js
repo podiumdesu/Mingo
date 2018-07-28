@@ -4,28 +4,6 @@ Page({
   data: {
     optionID: null,
     courseList: null,   // 课程详细内容
-    // {
-    //   id: 0,
-    //   name: '七天冥想基础入门A',
-    //   description: 'this is A',
-    //   cardImg: "http://pcfgv46cm.bkt.clouddn.com/card0.png",
-    //   bgImg: "http://pcfgv46cm.bkt.clouddn.com/course0-bg.png",
-    //   audioList: [
-    //     {
-    //       src: "https://od.lk/s/NV8xMjIyMTUxMzVf/1-1.mp3",
-    //       length: "00:09:56"
-    //     },
-    //     {
-    //       src: "https://od.lk/s/NV8xMjIzNjgyMDBf/1-2.mp3",
-    //       length: "00:10:09"
-    //     },
-    //     {
-    //       src: "https://od.lk/s/NV8xMjIzNjgzNDlf/1-3.mp3",
-    //       length: "00:08:37"
-    //     }
-    //   ]
-    // },
-
     courseProgress: null,    // 课程进度，数字。 0代表第一天。
     des: null,      // 描述
     selectClassDisplayInfo: {
@@ -73,14 +51,30 @@ Page({
   // ################################ 加载中 ################################
   onShow() {
     this.setData({
-      courseProgress: wx.getStorageSync('curriculumProgress')[this.data.optionID]
+      finish: app.globalData.curriculumList[this.data.optionID].finished,
+      courseProgress: wx.getStorageSync('curriculumProgress')[this.data.optionID]   // 设置课程进度
     })
 
-    if (this.data.courseProgress === this.data.courseLength) {   // 已经全部完成了
-      wx.showToast({
-        title: '你已经成功完成所有练习啦',
-        content: '学习完啦',
-        duration: 2000,
+    if (app.globalData.curriculumList[this.data.optionID].finished) {   // 已经全部完成了
+      if (!app.globalData.curriculumList[this.data.optionID].hasShowInfo) {
+        app.globalData.curriculumList[this.data.optionID].hasShowInfo = true
+        wx.showToast({
+          title: '你已经成功完成所有练习啦',
+          content: '学习完啦',
+          duration: 2000,
+        })
+      }
+
+      this.setData({
+        setClass: true
+      })
+      // 维护用于button点击的两个数组
+      this.data.setClass && this.setData({
+        unlockedClass: this.setUnlockedClass(this.data.courseProgress+1),
+        lockedClass: []
+      })
+      this.setData({
+        setClass: false
       })
     } else {
       this.setData({
@@ -88,7 +82,6 @@ Page({
         currentClickClassID: this.data.courseProgress,
         changeBtnStyleID: this.data.courseProgress
       })
-  
       // 设置展示课程信息+时长
       this.setData({
         selectClassDisplayInfo: {
@@ -96,7 +89,7 @@ Page({
           length: this.returnCurrentClassTime(this.data.courseProgress)
         }
       })
-      // 维护用于button点击的两个数组
+            // 维护用于button点击的两个数组
       this.data.setClass && this.setData({
         unlockedClass: this.setUnlockedClass(this.data.courseProgress),
         lockedClass: this.setLockedClass(this.data.courseProgress,this.data.courseLength)
@@ -104,6 +97,7 @@ Page({
       this.setData({
         setClass: false
       })
+
     }
   },
   onLoad(option) {
@@ -119,33 +113,59 @@ Page({
       // curriculumProgress 决定解锁了多少课程。
       // 页面展示变量
     })
+
     this.setData({
+      finish: app.globalData.curriculumList[this.data.optionID].finished,
       courseList: app.globalData.curriculumList[this.data.optionID],
       courseProgress: wx.getStorageSync('curriculumProgress')[this.data.optionID]
     })
     this.setData({
       des: this.data.courseList.description,
       courseLength: this.data.courseList.audioList.length,
-      setClass: true,
-      currentClickClassID: this.data.courseProgress,
-      changeBtnStyleID: this.data.courseProgress
     })
 
-    // 设置展示课程信息+时长
-    this.setData({
-      selectClassDisplayInfo: {
-        name: this.returnDay(this.data.courseProgress),
-        length: this.returnCurrentClassTime(this.data.courseProgress)
-      }
-    })
-    // 维护用于button点击的两个数组
-    this.data.setClass && this.setData({
-      unlockedClass: this.setUnlockedClass(this.data.courseProgress),
-      lockedClass: this.setLockedClass(this.data.courseProgress,this.data.courseLength)
-    })
-    this.setData({
-      setClass: false
-    })
+    if (app.globalData.curriculumList[this.data.optionID].finished === false) {
+      console.log('还没有完成onload')
+      console.log(this.data.courseProgress)
+
+      this.setData({
+        currentClickClassID: this.data.courseProgress,   // 设置当前选择的课程
+        changeBtnStyleID: this.data.courseProgress
+      })
+      this.setData({
+        setClass: true,
+      })
+  
+      // 设置展示课程信息+时长
+      this.setData({
+        selectClassDisplayInfo: {
+          name: this.returnDay(this.data.courseProgress),
+          length: this.returnCurrentClassTime(this.data.courseProgress)
+        }
+      })
+      // 维护用于button点击的两个数组
+      this.data.setClass && this.setData({
+        unlockedClass: this.setUnlockedClass(this.data.courseProgress),
+        lockedClass: this.setLockedClass(this.data.courseProgress,this.data.courseLength)
+      })
+      console.log(this.data.lockedClass)
+      this.setData({
+        setClass: false
+      })
+    } else {
+      this.setData({
+        setClass: true
+      })
+      // 维护用于button点击的两个数组
+      this.data.setClass && this.setData({
+        unlockedClass: this.setUnlockedClass(this.data.courseProgress+1),
+        lockedClass: []
+      })
+      this.setData({
+        setClass: false
+      })
+    }
+
 
   },
   // 课程按钮点击

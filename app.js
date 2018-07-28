@@ -54,17 +54,19 @@ App({
         description: '帮助你入门冥想的最佳经典课程，自发行以来，数百万次播放，成为深受欢迎的线上冥想课程',
         cardImg: "http://pcfgv46cm.bkt.clouddn.com/card0.png",
         bgImg: "http://pcfgv46cm.bkt.clouddn.com/course0-bg.png",
+        finished: false,
+        hasShowInfo: false,
         audioList: [
           {
-            src: "https://od.lk/s/NV8xMjIyMTUxMzVf/1-1.mp3",
+            src: "http://pcfgv46cm.bkt.clouddn.com/Mingo%E5%86%A5%E6%83%B3-Day%201.mp3",
             length: "00:09:56"
           },
           {
-            src: "https://od.lk/s/NV8xMjIzNjgyMDBf/1-2.mp3",
+            src: "http://pcfgv46cm.bkt.clouddn.com/%E5%86%A5%E6%83%B3%20%E5%AE%8C%E6%88%9002%E6%94%B9.mp3",
             length: "00:10:09"
           },
           {
-            src: "https://od.lk/s/NV8xMjIzNjgzNDlf/1-3.mp3",
+            src: "http://pcfgv46cm.bkt.clouddn.com/%E5%86%A5%E6%83%B3%20%E5%AE%8C%E6%88%9003%E6%94%B9.mp3",
             length: "00:08:37"
           }
         ]
@@ -75,15 +77,41 @@ App({
         description: 'this is B',
         cardImg: "http://pcfgv46cm.bkt.clouddn.com/card1.png",
         bgImg: "http://pcfgv46cm.bkt.clouddn.com/course2-bg.png",
+        finished: false,
+        hasShowInfo: false,
         audioList: [
           {
-            src: "https://od.lk/s/NV8xMjI0NTMwODBf/%E4%BA%95%E4%B8%8A%E5%92%8C%E5%BD%A6%20-%20%E3%81%8A%E9%9B%BB%E8%A9%B1.mp3",
+            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
             length: "00:00:08"
           },
           {
-            src: "https://od.lk/s/NV8xMjI0NTMwODFf/Immediate%20Music%20-%20Orch%20%26%20Choir%20Descent%201.mp3",
-            length: "00:00:19"
+            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+            length: "00:00:08"
           },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+            length: "00:00:08"
+          },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+            length: "00:00:08"
+          },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+            length: "00:00:08"
+          },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+            length: "00:00:08"
+          },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+            length: "00:00:08"
+          },
+          // {
+          //   src: "https://od.lk/s/NV8xMjI0NTMwODFf/Immediate%20Music%20-%20Orch%20%26%20Choir%20Descent%201.mp3",
+          //   length: "00:00:19"
+          // },
           // {
           //   src: "https://od.lk/s/NV8xMjI0NTMwNzhf/Immediate%20Music%20-%20Sixty%20Voices%20Rise%203.mp3",
           //   length: "00:00:21"
@@ -100,19 +128,25 @@ App({
         description: 'this is C',
         cardImg: "http://pcfgv46cm.bkt.clouddn.com/card2.png",
         bgImg: "http://pcfgv46cm.bkt.clouddn.com/course1-bg.png",
+        finished: false,
+        hasShowInfo: false,
         audioList: [
           {
-            src: "https://od.lk/s/NV8xMjIyMTUxMzVf/1-1.mp3",
-            length: "00:03:56"
+            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+            length: "00:00:08"
           },
           {
-            src: "https://od.lk/s/NV8xMjIzNjgyMDBf/1-2.mp3",
-            length: "00:10:09"
+            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+            length: "00:00:08"
           },
           {
-            src: "https://od.lk/s/NV8xMjIzNjgzNDlf/1-3.mp3",
-            length: "00:08:37"
-          }
+            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+            length: "00:00:08"
+          },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+            length: "00:00:08"
+          },
         ]
       },
     ]

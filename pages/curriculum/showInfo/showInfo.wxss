@@ -98,7 +98,7 @@
 
 .start-btn > image {
   width: 100px;
-  height: 45px;
+  height: 40px;
 }
 
 .info-show {
