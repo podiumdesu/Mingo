@@ -125,9 +125,6 @@ Page({
     })
 
     if (app.globalData.curriculumList[this.data.optionID].finished === false) {
-      console.log('还没有完成onload')
-      console.log(this.data.courseProgress)
-
       this.setData({
         currentClickClassID: this.data.courseProgress,   // 设置当前选择的课程
         changeBtnStyleID: this.data.courseProgress
@@ -186,6 +183,14 @@ Page({
         name: this.returnDay(this.data.currentClickClassID),
         length: this.returnCurrentClassTime(this.data.currentClickClassID)
       }
+    })
+  },
+  clickLockedClass: function() {
+    wx.showToast({
+      title: '你还没有学习到这里哦～',
+      icon: 'none',
+      duration: 1000,
+      mask:true
     })
   },
   clickToStartAudio: function() {

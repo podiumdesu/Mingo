@@ -29,7 +29,7 @@
     </view>
     <view wx:if="{{finish === false}}" class="class-btn unlock-class-btn {{changeBtnStyleID === courseProgress ? 'now-class-btn' : ''}} " bindtap="clickToShowInfo" data-id="{{courseProgress}}">{{courseProgress + 1}}</view>
     <view wx:for="{{lockedClass}}">
-      <view class="class-btn lock-class-btn" bindtap="clickToShowInfo" data-id="{{item.id}}">{{item.id + 1}}</view>
+      <view class="class-btn lock-class-btn" bindtap="clickLockedClass" data-id="{{item.id}}">{{item.id + 1}}</view>
     </view>
   </view>
 
