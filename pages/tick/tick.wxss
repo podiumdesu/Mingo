@@ -1,0 +1,176 @@
+page {
+  height: 100%;
+  background-image: url("http://pcfgv46cm.bkt.clouddn.com/forest.png");
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tick-ctn {
+  overflow: hidden;
+  width: 300px;
+  padding-top: 50px;
+
+}
+
+
+
+.clock-show-ctn {
+  position: relative;
+  height:200px;
+  width:200px;
+  margin: 0 auto 50px auto;
+
+}
+
+.clock-ctn {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  border: 3px solid white;
+  border-radius: 50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.clock-ripple {
+  position: absolute;
+  top:50%;
+  left:50%;
+  margin-top:-105px;
+  margin-left:-105px;
+}
+
+.clock-time {
+  color: white;
+  letter-spacing: 2px;
+  text-indent: 2px;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+/*按钮样式*/
+
+.switch-btn-ctn {
+  margin-top: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+}
+.start-btn {
+  text-align: center;
+}
+.start-btn image {
+  height: 40px;
+  width: 100px;
+
+}
+.switch-btn {
+  width: 80px;
+  height: 40px;
+  border: 1px solid white;
+  text-align: center;
+  border-radius: 28px;
+  line-height: 40px;
+  color: white;
+  margin: 0 10px;
+  margin-top: 20px;
+}
+
+
+/* 选择器样式 */
+picker-view-column {
+  background-color: rgb(0, 255, 234);
+}
+
+.picker-view-ctn {
+  text-align:center;
+  display:flex;
+  justify-content:center;
+  margin-top: 70px;
+}
+picker {
+  height: 40px;
+  width: 100px;
+  border: 2px solid white;
+  border-radius: 28px;
+  text-align: center;
+}
+.picker {
+  font-size: 16px;
+  line-height: 40px;
+  color: white;
+}
+.mask-class-ctn {
+  background-color:transparent;
+}
+
+.indicator-class-ctn {
+   height: 30px;
+   width: 85px; 
+   border: 2px solid white; 
+   border-radius: 8px;
+}
+
+
+
+
+
+.circle, .circle2, .circle3, .circle4{
+  position:absolute;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(0,-50%);
+  opacity: 0;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  border: 2px solid white;
+  -webkit-animation: ripple 4s linear infinite;
+  animation: ripple 4s linear infinite;
+}
+
+.circle2{
+  -webkit-animation-delay: 1s;
+}
+.circle3{
+  -webkit-animation-delay: 2s;
+}
+.circle4{
+  -webkit-animation-delay: 3s;
+}
+
+@-webkit-keyframes ripple {
+  0% {
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}

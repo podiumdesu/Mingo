@@ -1,6 +1,36 @@
 
-<input type="text" placeholder="ddfdsfa" auto-focus bindinput="setStartTime"/>
+<view class="tick-ctn">
 
-<view>
-  <icon bindtap="clickToStart" type="success" size="80" color="green" />
+<view class="clock-show-ctn">
+  <div wx:if="{{rippleDisplay}}" class="clock-ripple" >
+    <div class="circle"></div>
+    <div class="circle2"></div>
+    <div class="circle3"></div>
+    <div class="circle4"></div>
+  </div>
+  <view class="clock-ctn circle-ripple">
+    <p class="clock-time">
+      {{temp.processTime}}
+    </p>
+  </view>
+</view>
+
+<view wx:if="{{clockSwitchInfo.start}}"  class="picker-view-ctn">
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{timeChoice}}">
+    <view class="picker">
+      {{pickerTips}}
+    </view>
+  </picker>
+</view>
+
+<view class="switch-btn-ctn"> 
+  <view wx:if="{{clockSwitchInfo.start}}" class="start-btn" bindtap="clickToStart">
+    <image src="../../static/tick-start.png" />
+  </view>
+  <view wx:if="{{clockSwitchInfo.stop}}" class="switch-btn" bindtap="clickToStop">停止</view>
+  <view wx:if="{{clockSwitchInfo.pause}}" class="switch-btn" bindtap="clickToPause">暂停</view>
+  <view wx:if="{{clockSwitchInfo.continue}}" class="switch-btn" bindtap="clickToContinue">继续</view>
+</view>
+
+
 </view>
