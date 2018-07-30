@@ -18,6 +18,9 @@ page {
   background-color: white;
   border: 1px solid white;
 }
+.btn-click-sign::after{
+  border: none
+}
 .userinfo {
   display: flex;
   height: 15%;
@@ -96,5 +99,5 @@ page {
 
 .find-class image {
   height: 40px;
-  width: 100px;
+  width: 100px
 }
