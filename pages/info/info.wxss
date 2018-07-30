@@ -13,8 +13,8 @@ page {
 }
 .btn-click-sign {
   line-height: 50px;
-  margin-left: 30px;
-  margin:auto;
+  margin-left: 10px;
+  padding-left: 0px;
   background-color: white;
   border: 1px solid white;
 }
