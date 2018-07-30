@@ -73,7 +73,7 @@ Page({
     this.setData({
       temp: {processTime: formatTimeToDisplay(this.data.thisCourseAudioInfo.length)}
     })
-    console.log("这个课程已经学习到第"+this.data.classID+"天了")
+    // console.log("这个课程已经学习到第"+this.data.classID+"天了")
     
     // 设置时钟
     app.globalData.processTime = this.data.thisCourseAudioInfo.length
@@ -82,7 +82,7 @@ Page({
           startTime: this.data.thisCourseAudioInfo.length,
           endTime: '00:00:00',
           completeTask: function () { // 完成后要做的事情
-              console.log('this tick is done')
+              // console.log('this tick is done')
           },
           temp: {
             temp: this.data.temp.processTime
@@ -111,11 +111,9 @@ Page({
         showCancel: false,
       })
       clearInterval(this.intervalID)
-      console.log('完满结束啦～')
+      // console.log('完满结束啦～')
       let temp = this.data.curriculumProgress
       // 如果听的是同一节课，不应该更新。
-      console.log(this.data.classID)
-      console.log(this.data.classID == temp[this.data.optionID])
       if (this.data.classID == temp[this.data.optionID]) {
         temp[this.data.optionID]++   // 比如说从0 -> 1，课程总长度为1
       }
@@ -165,7 +163,7 @@ Page({
       tempSwitch && (
         function() {
           this.setData({
-            intervalID: setInterval(this.ddd.bind(this), 1000)
+            intervalID: setInterval(this.updateTimeToShow.bind(this), 1000)
           })
           a.start()
         }.call(this)
@@ -215,26 +213,13 @@ Page({
 
     app.globalData.audio.innerAudioContext.src = ''
   },
-  ddd: function() {
+  updateTimeToShow: function() {
     this.setData({
       temp: {
         processTime: formatTimeToDisplay(a.temp())
       }
     })
   },
-  onShow: function() {
-
-  },
-  changeIndexInE: function(){
-    var pages = getCurrentPages();
-    var prevPage = pages[pages.length - 2];
-    console.log(prevPage.data)
-    prevPage.setData({
-      // 修改全局变量
-    })
-  },
-
-
   clockSwitchStartClick: function () {
     // 设置src用于播放
     app.globalData.audio.innerAudioContext.src = this.data.thisCourseAudioInfo.src
@@ -273,8 +258,7 @@ Page({
 
   clockSwitchPauseClick: function() {
     app.globalData.audio.innerAudioContext.pause()
-    console.log('暂停播放')
-
+    this.updateTimeToShow.call(this)
     this.setData({
       cbSwitch: {
         pause: true

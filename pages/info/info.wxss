@@ -52,7 +52,7 @@ page {
 }
 .show-title {
   color: #50606c;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 400;
   letter-spacing: 1px;
   text-indent: 1px;

@@ -54,7 +54,7 @@ Clock.prototype = {
         let _this = this
         let time = getTime(_this.processingTime, _this.endTime)
         // _this.displayEle.innerHTML = _this.processingTime // 用于赋值
-        // console.log(_this.processingTime)
+        // console.log('Clock' + _this.processingTime)
         if (time.startTime - time.endTime > 0) {
             time.startTime -= 1000 // 此时减时间
             _this.processingTime = new Date(time.startTime).toString().substr(16, 8) // 运行了1s， 此时应该更新。
@@ -67,7 +67,7 @@ Clock.prototype = {
             _this.finishOrNot = true
             resolve(_this._returnValue())
             _this.processingTime = _this.startTime
-            console.log('完成啦！！！！！！！！！！！')
+            // console.log('完成啦！！！！！！！！！！！')
         }
     },
     _returnValue: function () {
@@ -102,7 +102,8 @@ Clock.prototype = {
         let _this = this
         clearInterval(_this.intervalID)
         let a = convertTimeToDate(_this.processingTime) //  因为shutdown了，所以要处理在begin()中多减去的1000ms
-        // a.time -= -1000 // why can't plus 1000???????
+        // a.time -= -1000 // why can't plus 1000??????? 
+        // console.log('pause' + _this.processingTime)
         _this.processingTime = new Date(a.time).toString().substr(16, 8)
         return new Promise((resolve) => {
             resolve(_this._returnValue())

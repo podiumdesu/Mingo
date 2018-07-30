@@ -87,7 +87,6 @@ Page({
   },
   completeTask: function() {
     app.globalData.allTickTime += getSeconds(this.data.startTime)
-    console.log(app.globalData.allTickTime)
     wx.showToast({
       title: '冥想结束',
       icon: 'success',
@@ -142,10 +141,11 @@ Page({
           processTime: formatTimeToDisplay(this.data.startTime)
         }
       })
+      this.data.index !== null && this.upDateTimeToShow.bind(this)
       this.data.index !== null && this.setData({
         intervalID: setInterval(this.upDateTimeToShow.bind(this), 1000)   // 开始计算啦
       })
-      this.data.index !== null && tickTick.start()
+       this.data.index !== null && tickTick.start()
     }
 
   },
@@ -180,6 +180,7 @@ Page({
       },
       rippleDisplay: false
     })
+    this.upDateTimeToShow.call(this)   // 此处用于实时更新数据，避免由于event loop导致的数据在下一秒才进行更新的显示问题
     tickTick.pause()
   },
   clickToContinue: function() {
