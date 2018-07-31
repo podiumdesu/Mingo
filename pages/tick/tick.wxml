@@ -9,9 +9,22 @@
     <div class="circle4"></div>
   </div>
   <view class="clock-ctn circle-ripple">
-    <p class="clock-time">
-      {{temp.processTime}}
-    </p>
+    <view class="clock-time">
+      <view wx:if="{{temp.processTime === null}}">
+        {{environmentChoose}}
+      </view>
+      <view wx:else class="start-clock-time">
+        <view class="clock-time">
+          {{temp.processTime}}
+        </view>
+        <view class="start-clock-env">
+          {{environmentChoose}}
+        </view>
+
+      </view>
+
+    </view>
+
   </view>
 </view>
 
@@ -28,8 +41,8 @@
     <image src="../../static/tick-start.png" />
   </view>
   <view wx:if="{{clockSwitchInfo.stop}}" class="switch-btn" bindtap="clickToStop">停止</view>
-  <view wx:if="{{clockSwitchInfo.pause}}" class="switch-btn" bindtap="clickToPause">暂停</view>
-  <view wx:if="{{clockSwitchInfo.continue}}" class="switch-btn" bindtap="clickToContinue">继续</view>
+  <view wx:if="{{clockSwitchInfo.pause}}" class="switch-btn switch-btn-right" bindtap="clickToPause">暂停</view>
+  <view wx:if="{{clockSwitchInfo.continue}}" class="switch-btn switch-btn-right" bindtap="clickToContinue">继续</view>
 </view>
 
 

@@ -23,17 +23,11 @@ Page({
     temp: {
       processTime: null
     },
+    environmentChoose: '森林',
     pickerTips: null,
     intervalID: null    // 保存更新时钟的intervalID
   },
   onLoad: function() {
-
-    // 设置显示森林
-    this.setData({
-      temp: {
-        processTime: '森林'
-      }
-    })
     this.setData({
       pickerTips: '选择时长',
       clockSwitchInfo: {

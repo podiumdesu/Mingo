@@ -42,12 +42,22 @@ page {
   margin-left:-105px;
 }
 
+.start-clock-time {
+  margin-top: 20px;
+}
+.start-clock-env {
+  letter-spacing: 2px;
+  text-indent: 2px;
+  font-size: 18px;
+  font-weight: 400;
+}
 .clock-time {
   color: white;
   letter-spacing: 2px;
   text-indent: 2px;
   font-size: 23px;
   font-weight: 500;
+  text-align: center;
 }
 
 /*按钮样式*/
@@ -78,12 +88,12 @@ page {
   margin: 0 10px;
   margin-top: 20px;
 }
-
+.switch-btn-right {
+  background-color: white;
+  color:#738da0;
+}
 
 /* 选择器样式 */
-picker-view-column {
-  background-color: rgb(0, 255, 234);
-}
 
 .picker-view-ctn {
   text-align:center;
