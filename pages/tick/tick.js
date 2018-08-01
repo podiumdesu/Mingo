@@ -24,6 +24,7 @@ Page({
       processTime: null
     },
     environmentChoose: '森林',
+    tickAudioWaiting: null,
     pickerTips: null,
     intervalID: null    // 保存更新时钟的intervalID
   },
@@ -36,7 +37,8 @@ Page({
         pause: false,
         stop: false,
         continue: false,
-      }
+      },
+      tickAudioWaiting: null
     })
     rippleDisplay: false
     this.setData({
@@ -46,10 +48,14 @@ Page({
     app.globalData.audio.innerAudioContext = wx.createInnerAudioContext()
 
     app.globalData.audio.innerAudioContext.autoplay = false
-    app.globalData.audio.innerAudioContext.loop = true
     app.globalData.audio.innerAudioContext.src = ''
-    app.globalData.audio.innerAudioContext.onPlay(() => {   // 当音频完整结束的时候
-      console.log('开始播放')
+    app.globalData.audio.innerAudioContext.onPlay(() => {   // 当音频开始播放
+      this.setData({
+        rippleDisplay: true,
+        tickAudioWaiting: false
+      })
+      let switchOn = (this.data.index !== null) && (this.data.tickAudioWaiting === false)
+      switchOn && tickTick.start()
     })
     app.globalData.audio.innerAudioContext.onStop(() => {
       console.log('停止播放')
@@ -69,7 +75,8 @@ Page({
         pause: false,
         stop: false,
         continue: false,
-      }
+      },
+      tickAudioWaiting: null
     })
   },
 
@@ -117,7 +124,8 @@ Page({
         stop: false,
         continue: false,
       },
-      rippleDisplay: false
+      rippleDisplay: false,
+      tickAudioWaiting: null
     })
     this.setData({   // 重置显示
       temp: {
@@ -128,6 +136,7 @@ Page({
     clearInterval(this.data.intervalID)
     app.globalData.audio.innerAudioContext.src = ''
   },
+  
   clickToStart: function() {
     app.globalData.audio.innerAudioContext.play()
     if (this.data.index === null) {
@@ -144,7 +153,8 @@ Page({
           stop: false,
           continue: false,
         },
-        rippleDisplay: true,
+        rippleDisplay: false,
+        tickAudioWaiting: true
       })
       tickTick = new Clock({
         startTime: this.data.startTime,
@@ -163,7 +173,6 @@ Page({
       this.data.index !== null && this.setData({
         intervalID: setInterval(this.upDateTimeToShow.bind(this), 1000)   // 开始计算啦
       })
-       this.data.index !== null && tickTick.start()
     }
 
   },

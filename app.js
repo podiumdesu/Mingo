@@ -12,9 +12,9 @@ App({
     // 设置冥想钟的音频
     let bgmMap = new Map()
     bgmMap.set('1', 'http://pcfgv46cm.bkt.clouddn.com/Forest_1mins.mp3')
-    bgmMap.set('3', 'http://pcfgv46cm.bkt.clouddn.com/Forest_3mins.mp3')
-    bgmMap.set('5', 'http://pcfgv46cm.bkt.clouddn.com/Forest_5mins.mp3')
-    bgmMap.set('10', 'http://pcfgv46cm.bkt.clouddn.com/Forest_10mins.mp3')
+    bgmMap.set('3', 'http://pcfgv46cm.bkt.clouddn.com/low-quality/Forest_3mins_lq.mp3')
+    bgmMap.set('5', 'http://pcfgv46cm.bkt.clouddn.com/low-quality/Forest_5mins_lq.mp3')
+    bgmMap.set('10', 'http://pcfgv46cm.bkt.clouddn.com/low-quality/Forest_10mins_lq.mp3')
     bgmMap.set('full', 'http://pcfgv46cm.bkt.clouddn.com/Forest_full_dropblank.mp3')
     this.globalData.tickClockBGM = {
       'forest': bgmMap
