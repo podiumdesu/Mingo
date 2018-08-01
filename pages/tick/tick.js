@@ -25,6 +25,7 @@ Page({
     },
     environmentChoose: '森林',
     tickAudioWaiting: null,
+    tickClockFirst: false,
     pickerTips: null,
     intervalID: null    // 保存更新时钟的intervalID
   },
@@ -54,14 +55,14 @@ Page({
         rippleDisplay: true,
         tickAudioWaiting: false
       })
-      let switchOn = (this.data.index !== null) && (this.data.tickAudioWaiting === false)
+      let switchOn = (this.data.index !== null) && (this.data.tickAudioWaiting === false) && (this.data.tickClockFirst === true)
       switchOn && tickTick.start()
     })
     app.globalData.audio.innerAudioContext.onStop(() => {
-      console.log('停止播放')
+      // console.log('停止播放')
     })
     app.globalData.audio.innerAudioContext.onWaiting(() => {
-      console.log('正在缓存')
+      // console.log('正在缓存')
     })
     app.globalData.audio.innerAudioContext.onError((res) => {
       console.log(res.errMsg)
@@ -134,6 +135,7 @@ Page({
       pickerTips: this.data.timeChoice[this.data.index] + ' 分钟'
     })
     clearInterval(this.data.intervalID)
+    app.globalData.audio.innerAudioContext.stop()
     app.globalData.audio.innerAudioContext.src = ''
   },
   
@@ -153,6 +155,7 @@ Page({
           stop: false,
           continue: false,
         },
+        tickClockFirst: true,
         rippleDisplay: false,
         tickAudioWaiting: true
       })
@@ -185,7 +188,8 @@ Page({
         stop: false,
         continue: false,
       },
-      rippleDisplay: false
+      rippleDisplay: false,
+      tickClockFirst: false
     })
     this.setData({
       temp: {
@@ -207,7 +211,8 @@ Page({
         stop: true,
         continue: true,
       },
-      rippleDisplay: false
+      rippleDisplay: false,
+      tickClockFirst: false
     })
     this.upDateTimeToShow.call(this)   // 此处用于实时更新数据，避免由于event loop导致的数据在下一秒才进行更新的显示问题
     tickTick.pause()
@@ -222,6 +227,7 @@ Page({
         continue: false,
       },
       rippleDisplay: true,
+      tickClockFirst: false,
     })
     tickTick.start()
   },
