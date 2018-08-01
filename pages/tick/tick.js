@@ -27,6 +27,7 @@ Page({
     pickerTips: null,
     intervalID: null    // 保存更新时钟的intervalID
   },
+
   onLoad: function() {
     this.setData({
       pickerTips: '选择时长',
@@ -41,8 +42,26 @@ Page({
     this.setData({
       startTime: '00:00:10' //设定初始值
     })
-  },
 
+    app.globalData.audio.innerAudioContext = wx.createInnerAudioContext()
+
+    app.globalData.audio.innerAudioContext.autoplay = false
+    app.globalData.audio.innerAudioContext.loop = true
+    app.globalData.audio.innerAudioContext.src = ''
+    app.globalData.audio.innerAudioContext.onPlay(() => {   // 当音频完整结束的时候
+      console.log('开始播放')
+    })
+    app.globalData.audio.innerAudioContext.onStop(() => {
+      console.log('停止播放')
+    })
+    app.globalData.audio.innerAudioContext.onWaiting(() => {
+      console.log('正在缓存')
+    })
+    app.globalData.audio.innerAudioContext.onError((res) => {
+      console.log(res.errMsg)
+      console.log(res.errCode)
+    })
+  },
   onUnload: function() {
     this.setData({
       clockSwitchInfo: {
@@ -77,8 +96,13 @@ Page({
         processTime: formatTimeToDisplay(this.data.startTime)
       }
     })
-
+    // 设置音频链接
+    let bgmUrl = app.globalData.tickClockBGM['forest'].get(this.data.timeChoice[this.data.index])
+    // bgmUrl = app.globalData.tickClockBGM['forest'].get('1')
+    app.globalData.audio.innerAudioContext.src = bgmUrl
+    console.log(bgmUrl)
   },
+
   completeTask: function() {
     app.globalData.allTickTime += getSeconds(this.data.startTime)
     wx.showToast({
@@ -102,8 +126,10 @@ Page({
       pickerTips: this.data.timeChoice[this.data.index] + ' 分钟'
     })
     clearInterval(this.data.intervalID)
+    app.globalData.audio.innerAudioContext.src = ''
   },
   clickToStart: function() {
+    app.globalData.audio.innerAudioContext.play()
     if (this.data.index === null) {
       wx.showToast({
         title: '请先选择时间哦～',
@@ -128,8 +154,6 @@ Page({
           temp: this.data.temp.processTime
         }
       })
-  
-
       this.setData({
         temp: {
           processTime: formatTimeToDisplay(this.data.startTime)
@@ -144,6 +168,7 @@ Page({
 
   },
   clickToStop: function() {
+    app.globalData.audio.innerAudioContext.stop()
     this.setData({   // 设置按钮
       clockSwitchInfo: {
         start: true,
@@ -165,6 +190,7 @@ Page({
 
 
   clickToPause: function() {
+    app.globalData.audio.innerAudioContext.pause()
     this.setData({   // 设置按钮
       clockSwitchInfo: {
         start: false,
@@ -178,6 +204,7 @@ Page({
     tickTick.pause()
   },
   clickToContinue: function() {
+    app.globalData.audio.innerAudioContext.play()
     this.setData({   // 设置按钮
       clockSwitchInfo: {
         start: false,

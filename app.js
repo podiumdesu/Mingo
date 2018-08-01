@@ -9,9 +9,16 @@ App({
     if (!wx.getStorageSync('curriculumProgress')) {   // 初始化课程进度
       wx.setStorageSync('curriculumProgress', [0,0,0,0,0,0,0,0,0,0])
     }
-    // 播放音频
-
-
+    // 设置冥想钟的音频
+    let bgmMap = new Map()
+    bgmMap.set('1', 'http://pcfgv46cm.bkt.clouddn.com/Forest_1mins.mp3')
+    bgmMap.set('3', 'http://pcfgv46cm.bkt.clouddn.com/Forest_3mins.mp3')
+    bgmMap.set('5', 'http://pcfgv46cm.bkt.clouddn.com/Forest_5mins.mp3')
+    bgmMap.set('10', 'http://pcfgv46cm.bkt.clouddn.com/Forest_10mins.mp3')
+    bgmMap.set('full', 'http://pcfgv46cm.bkt.clouddn.com/Forest_full_dropblank.mp3')
+    this.globalData.tickClockBGM = {
+      'forest': bgmMap
+    }
     // 登录
     wx.login({
       success: res => {
@@ -46,11 +53,12 @@ App({
       innerAudioContext: null,
       isDisplay: false
     },
+    tickClockBGM: {},
     processTime: 0,
     curriculumList: [
       {
         id: 0,
-        name: '七天冥想基础入门A',
+        name: '七天冥想基础入门',
         description: '帮助你入门冥想的最佳经典课程，自发行以来，数百万次播放，成为深受欢迎的线上冥想课程',
         cardImg: "http://pcfgv46cm.bkt.clouddn.com/card0.png",
         bgImg: "http://pcfgv46cm.bkt.clouddn.com/course0-bg.png",
@@ -71,84 +79,84 @@ App({
           }
         ]
       },
-      {
-        id: 1,
-        name: '七天冥想基础入门B',
-        description: 'this is B',
-        cardImg: "http://pcfgv46cm.bkt.clouddn.com/card1.png",
-        bgImg: "http://pcfgv46cm.bkt.clouddn.com/course2-bg.png",
-        finished: false,
-        hasShowInfo: false,
-        audioList: [
-          {
-            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
-            length: "00:00:08"
-          },
-          {
-            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
-            length: "00:00:08"
-          },
-          {
-            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
-            length: "00:00:08"
-          },
-          {
-            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
-            length: "00:00:08"
-          },
-          {
-            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
-            length: "00:00:08"
-          },
-          {
-            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
-            length: "00:00:08"
-          },
-          {
-            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
-            length: "00:00:08"
-          },
-          // {
-          //   src: "https://od.lk/s/NV8xMjI0NTMwODFf/Immediate%20Music%20-%20Orch%20%26%20Choir%20Descent%201.mp3",
-          //   length: "00:00:19"
-          // },
-          // {
-          //   src: "https://od.lk/s/NV8xMjI0NTMwNzhf/Immediate%20Music%20-%20Sixty%20Voices%20Rise%203.mp3",
-          //   length: "00:00:21"
-          // },
-          // {
-          //   src: "https://od.lk/s/NV8xMjI0NTMwNzVf/%E6%A8%AA%E5%B1%B1%E5%85%8B%20-%20%E8%A8%80%E3%82%8F%E3%81%AA%E3%81%84%E3%81%A3%E3%81%A6%E8%A8%80%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%AB%E3%83%BB%E3%83%BB%E3%83%BB.mp3",
-          //   length: "00:00:35"
-          // },
-        ]
-      }, 
-      {
-        id: 2,
-        name: '七天冥想基本入门C',
-        description: 'this is C',
-        cardImg: "http://pcfgv46cm.bkt.clouddn.com/card2.png",
-        bgImg: "http://pcfgv46cm.bkt.clouddn.com/course1-bg.png",
-        finished: false,
-        hasShowInfo: false,
-        audioList: [
-          {
-            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
-            length: "00:00:08"
-          },
-          {
-            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
-            length: "00:00:08"
-          },
-          {
-            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
-            length: "00:00:08"
-          },
-          {
-            src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
-            length: "00:00:08"
-          },
-        ]
-      },
+      // {
+      //   id: 1,
+      //   name: '七天冥想基础入门B',
+      //   description: 'this is B',
+      //   cardImg: "http://pcfgv46cm.bkt.clouddn.com/card1.png",
+      //   bgImg: "http://pcfgv46cm.bkt.clouddn.com/course2-bg.png",
+      //   finished: false,
+      //   hasShowInfo: false,
+      //   audioList: [
+      //     {
+      //       src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+      //       length: "00:00:08"
+      //     },
+      //     {
+      //       src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+      //       length: "00:00:08"
+      //     },
+      //     {
+      //       src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+      //       length: "00:00:08"
+      //     },
+      //     {
+      //       src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+      //       length: "00:00:08"
+      //     },
+      //     {
+      //       src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+      //       length: "00:00:08"
+      //     },
+      //     {
+      //       src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+      //       length: "00:00:08"
+      //     },
+      //     {
+      //       src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+      //       length: "00:00:08"
+      //     },
+      //     // {
+      //     //   src: "https://od.lk/s/NV8xMjI0NTMwODFf/Immediate%20Music%20-%20Orch%20%26%20Choir%20Descent%201.mp3",
+      //     //   length: "00:00:19"
+      //     // },
+      //     // {
+      //     //   src: "https://od.lk/s/NV8xMjI0NTMwNzhf/Immediate%20Music%20-%20Sixty%20Voices%20Rise%203.mp3",
+      //     //   length: "00:00:21"
+      //     // },
+      //     // {
+      //     //   src: "https://od.lk/s/NV8xMjI0NTMwNzVf/%E6%A8%AA%E5%B1%B1%E5%85%8B%20-%20%E8%A8%80%E3%82%8F%E3%81%AA%E3%81%84%E3%81%A3%E3%81%A6%E8%A8%80%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%AB%E3%83%BB%E3%83%BB%E3%83%BB.mp3",
+      //     //   length: "00:00:35"
+      //     // },
+      //   ]
+      // }, 
+      // {
+      //   id: 2,
+      //   name: '七天冥想基本入门C',
+      //   description: 'this is C',
+      //   cardImg: "http://pcfgv46cm.bkt.clouddn.com/card2.png",
+      //   bgImg: "http://pcfgv46cm.bkt.clouddn.com/course1-bg.png",
+      //   finished: false,
+      //   hasShowInfo: false,
+      //   audioList: [
+      //     {
+      //       src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+      //       length: "00:00:08"
+      //     },
+      //     {
+      //       src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+      //       length: "00:00:08"
+      //     },
+      //     {
+      //       src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+      //       length: "00:00:08"
+      //     },
+      //     {
+      //       src: "http://pcfgv46cm.bkt.clouddn.com/test.mp3",
+      //       length: "00:00:08"
+      //     },
+      //   ]
+      // },
     ]
   }
 })

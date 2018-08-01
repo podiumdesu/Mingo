@@ -78,24 +78,18 @@ Page({
     // 设置时钟
     app.globalData.processTime = this.data.thisCourseAudioInfo.length
     
-        a =  new Clock({
-          startTime: this.data.thisCourseAudioInfo.length,
-          endTime: '00:00:00',
-          completeTask: function () { // 完成后要做的事情
-              // console.log('this tick is done')
-          },
-          temp: {
-            temp: this.data.temp.processTime
-          }
-        })
+    a =  new Clock({
+      startTime: this.data.thisCourseAudioInfo.length,
+      endTime: '00:00:00',
+      completeTask: function () { // 完成后要做的事情
+          // console.log('this tick is done')
+      },
+      temp: {
+        temp: this.data.temp.processTime
+      }
+    })
 
     console.log(this.data.curriculumList[option.id].name)
-    // this.setData({
-    //   logs: (wx.getStorageSync('logs') || []).map(log => {
-    //     return util.formatTime(new Date(log))
-    //   })
-    // })
-
     // 设置音频
     app.globalData.audio.innerAudioContext = wx.createInnerAudioContext()
 
