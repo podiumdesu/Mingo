@@ -10,7 +10,7 @@
   <view class="cur-show-ctn" style="background-image: url({{bgImg}})">
     <view class="cur-show-all">
           <!-- <view bindtap="changeIndexInE" class="show-name">{{name}}</view>  --> 
-      <view class="cur-show-day"><p>第{{day}}课</p></view>
+      <view class="cur-show-day"><p>第{{day}}讲</p></view>
       <div wx:if="{{rippleDisplay}}" class="clock-ripple" >
         <div class="circle"></div>
         <div class="circle2"></div>

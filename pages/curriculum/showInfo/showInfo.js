@@ -42,7 +42,7 @@ Page({
   },
   returnDay: function(courseID) {
     let temp = ['一','二','三','四','五','六','七','八','九','十']
-    return '第'+temp[courseID]+'课'
+    return '第'+temp[courseID]+'讲'
   },
   returnCurrentClassTime: function(courseID) {
     return formatTimeToDisplay(this.data.courseList.audioList[courseID].length)

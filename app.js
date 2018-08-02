@@ -66,19 +66,124 @@ App({
         hasShowInfo: false,
         audioList: [
           {
-            src: "http://pcfgv46cm.bkt.clouddn.com/Mingo%E5%86%A5%E6%83%B3-Day%201.mp3",
+            src: "http://pcfgv46cm.bkt.clouddn.com/Mingo_course_01_lq.mp3",
             length: "00:09:56"
           },
           {
-            src: "http://pcfgv46cm.bkt.clouddn.com/%E5%86%A5%E6%83%B3%20%E5%AE%8C%E6%88%9002%E6%94%B9.mp3",
+            src: "http://pcfgv46cm.bkt.clouddn.com/Mingo_course_02_lq.mp3",
             length: "00:10:09"
           },
           {
-            src: "http://pcfgv46cm.bkt.clouddn.com/%E5%86%A5%E6%83%B3%20%E5%AE%8C%E6%88%9003%E6%94%B9.mp3",
+            src: "http://pcfgv46cm.bkt.clouddn.com/Mingo_course_03_lq.mp3",
             length: "00:08:37"
           }
         ]
       },
+      {
+        id: 1,
+        name: '冥想方法课',
+        description: '这个课程介绍不同的冥想方法，帮助你找到心里的那份平静，降低焦虑与压力。',
+        cardImg: "http://pcfgv46cm.bkt.clouddn.com/card1.png",
+        bgImg: "http://pcfgv46cm.bkt.clouddn.com/course2-bg.png",
+        finished: false,
+        hasShowInfo: false,
+        audioList: [
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/%E5%86%A5%E6%83%B3%E8%AF%BE/%E3%80%90%E5%86%A5%E6%83%B3%E8%AF%BE01%E3%80%91%20%E5%88%9D%E5%AD%A6%E5%86%A5%E6%83%B3%E4%BA%94%E5%88%86%E9%92%9F_lq.mp3",
+            length: "00:04:58"
+          },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/%E5%86%A5%E6%83%B3%E8%AF%BE/%E3%80%90%E5%86%A5%E6%83%B3%E8%AF%BE02%E3%80%91%E2%80%9C%E5%AE%9A%E2%80%9D%E7%9A%84%E5%86%A5%E6%83%B3%E6%B3%95_lq.mp3",
+            length: "00:10:40"
+          },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/%E5%86%A5%E6%83%B3%E8%AF%BE/%E3%80%90%E5%86%A5%E6%83%B3%E8%AF%BE03%E3%80%91%E6%95%B0%E5%91%BC%E5%90%B8%E5%86%A5%E6%83%B3%E6%B3%95_lq.mp3",
+            length: "00:07:37"
+          },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/%E5%86%A5%E6%83%B3%E8%AF%BE/%E3%80%90%E5%86%A5%E6%83%B3%E8%AF%BE04%E3%80%91%E7%94%9C%E8%9C%9C%E5%86%A5%E6%83%B3%E6%B3%95_lq.mp3",
+            length: "00:07:45"
+          },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/%E5%86%A5%E6%83%B3%E8%AF%BE/%E3%80%90%E5%86%A5%E6%83%B3%E8%AF%BE05%E3%80%91%E5%BC%BA%E5%8C%96%E5%86%85%E5%BF%83%E5%86%A5%E6%83%B3%E6%B3%95_lq.mp3",
+            length: "00:09:13"
+          },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/%E5%86%A5%E6%83%B3%E8%AF%BE/%E3%80%90%E5%86%A5%E6%83%B3%E8%AF%BE06%E3%80%91%E5%AE%87%E5%AE%99%E5%86%A5%E6%83%B3%E6%B3%95_lq.mp3",
+            length: "00:09:08"
+          },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/%E5%86%A5%E6%83%B3%E8%AF%BE/%E3%80%90%E5%86%A5%E6%83%B3%E8%AF%BE07%E3%80%91%E8%87%AA%E6%88%91%E5%90%8C%E6%83%85%E5%86%A5%E6%83%B3%E6%B3%95_lq.mp3",
+            length: "00:04:44"
+          },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/%E5%86%A5%E6%83%B3%E8%AF%BE/%E3%80%90%E5%86%A5%E6%83%B3%E8%AF%BE08%E3%80%91%E5%96%84%E6%84%8F%E5%9B%9E%E5%BD%92%E5%86%A5%E6%83%B3%E6%B3%95_lq.mp3",
+            length: "00:08:55"
+          },
+        ]
+      },
+      {
+        id: 2,
+        name: '舒缓情绪系列',
+        description: '这个课程细致地引导你如何平息焦虑、放松情绪，帮助你更好的管理情绪与压力。',
+        cardImg: "http://pcfgv46cm.bkt.clouddn.com/card2.png",
+        bgImg: "http://pcfgv46cm.bkt.clouddn.com/course1-bg.png",
+        finished: false,
+        hasShowInfo: false,
+        audioList: [
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/%E8%88%92%E7%BC%93%E6%83%85%E7%BB%AA_lq.mp3",
+            length: "00:05:00"
+          },
+          {
+            src: "http://pcfgv46cm.bkt.clouddn.com/%E8%88%92%E7%BC%93%E6%83%85%E7%BB%AA2_lq.mp3",
+            length: "00:14:51"
+          },
+        ]
+      }
+      // {
+      //   id: 1,
+      //   name: '七天冥想基础入门B',
+      //   description: 'this is B',
+      //   cardImg: "http://pcfgv46cm.bkt.clouddn.com/card1.png",
+      //   bgImg: "http://pcfgv46cm.bkt.clouddn.com/course2-bg.png",
+      //   finished: false,
+      //   hasShowInfo: false,
+      //   audioList: [
+      //     {
+      //       src: " ",
+      //       length: " "
+      //     },
+      //     {
+      //       src: " ",
+      //       length: " "
+      //     },
+      //     {
+      //       src: " ",
+      //       length: " "
+      //     },
+      //     {
+      //       src: " ",
+      //       length: " "
+      //     },
+      //     {
+      //       src: " ",
+      //       length: " "
+      //     },
+      //     {
+      //       src: " ",
+      //       length: " "
+      //     },
+      //     {
+      //       src: " ",
+      //       length: " "
+      //     },
+      //     {
+      //       src: " ",
+      //       length: " "
+      //     },
+      //   ]
+      // }
       // {
       //   id: 1,
       //   name: '七天冥想基础入门B',
