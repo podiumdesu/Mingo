@@ -27,7 +27,8 @@ Page({
     tickAudioWaiting: null,
     tickClockFirst: false,
     pickerTips: null,
-    intervalID: null    // 保存更新时钟的intervalID
+    intervalID: null,    // 保存更新时钟的intervalID
+    bgmURL: null
   },
 
   onLoad: function() {
@@ -46,10 +47,10 @@ Page({
       startTime: '00:00:10' //设定初始值
     })
 
-    app.globalData.audio.innerAudioContext = wx.createInnerAudioContext()
-
+    app.globalData.audio.innerAudioContext = wx.getBackgroundAudioManager()
+    app.globalData.audio.innerAudioContext.title = "冥想钟 - 森林"
     app.globalData.audio.innerAudioContext.autoplay = false
-    app.globalData.audio.innerAudioContext.src = ''
+    // app.globalData.audio.innerAudioContext.src = 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46'
     app.globalData.audio.innerAudioContext.onPlay(() => {   // 当音频开始播放
       this.setData({
         rippleDisplay: true,
@@ -105,10 +106,9 @@ Page({
       }
     })
     // 设置音频链接
-    let bgmUrl = app.globalData.tickClockBGM['forest'].get(this.data.timeChoice[this.data.index])
-    // bgmUrl = app.globalData.tickClockBGM['forest'].get('1')
-    app.globalData.audio.innerAudioContext.src = bgmUrl
-    console.log(bgmUrl)
+    this.setData({
+      bgmURL: app.globalData.tickClockBGM['forest'].get(this.data.timeChoice[this.data.index])
+    })
   },
 
   completeTask: function() {
@@ -140,7 +140,11 @@ Page({
   },
   
   clickToStart: function() {
+
     app.globalData.audio.innerAudioContext.play()
+    app.globalData.audio.innerAudioContext.src = this.data.bgmURL
+    app.globalData.audio.innerAudioContext.title = "冥想钟 - 森林"
+
     if (this.data.index === null) {
       wx.showToast({
         title: '请先选择时间哦～',

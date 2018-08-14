@@ -91,10 +91,8 @@ Page({
 
     console.log(this.data.curriculumList[option.id].name)
     // 设置音频
-    app.globalData.audio.innerAudioContext = wx.createInnerAudioContext()
-
+    app.globalData.audio.innerAudioContext = wx.getBackgroundAudioManager()
     app.globalData.audio.innerAudioContext.autoplay = false
-    app.globalData.audio.innerAudioContext.src = ''
     app.globalData.audio.innerAudioContext.onEnded(() => {   // 当音频完整结束的时候
       app.globalData.allTickTime += getSeconds(this.data.curriculumList[this.data.optionID].audioList[this.data.classID].length)
       wx.showModal({
@@ -137,7 +135,6 @@ Page({
 
     app.globalData.audio.innerAudioContext.onPlay(() => {
       console.log('开始播放')
-      console.log(app.globalData.audio.innerAudioContext.duration)
       app.globalData.audio.isDisplay = true
       this.setData({
         clockSwitchInfo: {
@@ -161,7 +158,7 @@ Page({
           })
           a.start()
         }.call(this)
-    )
+      )
 
       // this.data.a.start.call(this.data.a)
     })
@@ -216,8 +213,10 @@ Page({
   },
   clockSwitchStartClick: function () {
     // 设置src用于播放
-    app.globalData.audio.innerAudioContext.src = this.data.thisCourseAudioInfo.src
     app.globalData.audio.innerAudioContext.play()
+    app.globalData.audio.innerAudioContext.src = this.data.thisCourseAudioInfo.src
+    app.globalData.audio.innerAudioContext.title = this.data.curriculumList[this.data.optionID].name + ' - 第' +  this.data.day[this.data.classID] + '讲'
+
 
     // 设置数据
     app.globalData.audio.isDisplay = false
